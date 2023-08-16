@@ -67,7 +67,7 @@ function validateEmail($email){
 }
 
 function validateUsername($username){
-    if(empty($username))){
+    if(empty($username)){
         $username_msg = "Bitte gib einen gültigen Benutzernamen ein.";
         return false;
     } 
