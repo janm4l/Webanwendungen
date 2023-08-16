@@ -128,7 +128,7 @@ function validateConfirmPassword($confirm_password){
         return false;     
     }
         
-    if($final_password != $confirm_password)){
+    if($final_password != $confirm_password){
         $confirm_password_msg = "Die eingegebenen Passwörter stimmen nicht überein.";
         return false;
     }
