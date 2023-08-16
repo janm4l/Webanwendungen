@@ -159,7 +159,7 @@ function checkPasswordRequirements($password){
     <input type="text" id="username" name="username" placeholder="Nutzername">
     <input type="password" id="password" name="password" placeholder="Passwort">
     <input type="password" id="confirm_password" name="confirmpassword" placeholder="Passwort Bestätigen">
-    <input type="submit" formaction="register.php" value="Registrieren">
+    <input type="submit" formaction="profile.php" value="Registrieren">
 </form>
 
 </body>
