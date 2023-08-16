@@ -8,7 +8,7 @@
 <form>
     <input type="email" id="email" name="email" placeholder="E-Mail"/>
     <input type="password" id="password" name="password" placeholder="Passwort">
-    <input type="submit" formaction="login.php" value="Login">
+    <input type="submit" formaction="profile.php" value="Login">
 </form>
 
 </body>
