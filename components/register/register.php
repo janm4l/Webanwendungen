@@ -24,9 +24,16 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     // Nutzernamen überprüfen
     $username_final = '';
     $username_validated = validateUsername(trim($_POST['username']));
+
+    // Validate password
+    $password_final = '';
+    $password_validated = validatePassword(trim($_POST['password']));
+    
+    // Validate confirm password
+    $confirm_password_validated = validateConfirmPassword(trim($_POST['confirm_password']));
     
     // Check input errors before inserting in database
-    if($email_validated && $username_validated ){
+    if($email_validated && $username_validated && $password_validated && $confirm_password_validated){
         
         // Prepare an insert statement
         $sql = "INSERT INTO users (email, username, password_hashed) VALUES (?, ?, ?)";

@@ -132,7 +132,6 @@ function validateConfirmPassword($confirm_password){
 
 function validateInputLength($input, $maxlength){
     if(strlen($input) > $maxlength){
-        $password_msg = ;
         return "Die Eingabe darf höchstens $maxlength Zeichen lang sein.";  
     }else{
         return "";
