@@ -25,7 +25,7 @@ $info = getUserInfo();
 </head>
 <body>
 <form>
-    <button type="submit" formaction="/components/logout/logout.php">Logout</button>
+    <button type="submit" formaction="/components/logout/logout.php" class="button">Logout</button>
 </form>
     <?php echo "<h1>Hallo " .  $info['username'] . ", du bist eingeloggt und hast die UserId " . getUserId() . "</h1>"; ?>
     <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200">
@@ -77,7 +77,7 @@ $info = getUserInfo();
     <br>
     <br>
     <form>
-        <button type="submit" formaction="/components/editprofile/editprofile.php">Bearbeiten</button>
+        <button type="submit" formaction="/components/editprofile/editprofile.php" class="button">Bearbeiten</button>
     </form>
 
 </body>
