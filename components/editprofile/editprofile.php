@@ -111,6 +111,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 
 <form method="post">
+<div id="editprofileFormOuter">
+<h1 id="editprofileHeading">Profil bearbeiten</h1>
+<div id="editprofileFormInner">
     <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200">
     <br>
     <input type="file" id="profilepicture" name="profilepicture">
@@ -176,6 +179,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <form>
 <button type="submit" formaction="/components/changepassword/changepassword.php" class="button">Passwort &auml;ndern</button>
 </form>
-
+</div>
+</div>
 </body>
 </html>

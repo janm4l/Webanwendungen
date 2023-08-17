@@ -7,7 +7,9 @@
 </head>
 <body>
 
-
+<div id="changepasswordFormOuter">
+<h1 id="changepasswordHeading">Passwort &auml;ndern</h1>
+<div id="changepasswordFormInner">
 <form method="post">
     Altes Passwort
     <br>
@@ -30,11 +32,11 @@
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($checknewpassword)) echo "<span class=\"errormessage\">Bitte bestätige dein neues Passwort.</span><br>"; //Password-Fehler ?>
     <br>
     <br>
-    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern">
+    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern"> <a href="/components/profile/profile.php" class="button">Profil</a>
 </form>
 <br>
-<form>
-<button type="submit" formaction="/components/profile/profile.php" class="button">Profil</button>
-</form>
+
+</div>
+</div>
 </body>
 </html>
