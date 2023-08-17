@@ -76,23 +76,30 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <!DOCTYPE html>
 <html>
 <title>Login</title>
+<head>
+    <link rel="stylesheet" href="login.css">
+</head>
 <body>
-<form>
-<button type="submit" formaction="register.php">Registrieren</button>
-</form>
-
-<form method="post">
-    <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if (!empty($username)) echo $username ?>"/>
-    <br>
-    <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($username)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte gib einen Nutzernamen ein.</span><br>"; //Username-Fehler ?>
-    <br>
-    <input type="password" id="password" name="password" placeholder="Passwort">
-    <br>
-    <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($password)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte gib ein Passwort ein.</span><br>"; //Password-Fehler ?>
-    <br>
-    <input type="submit" formaction="login.php" value="Login">
-</form>
-<?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\" style=\"color: red\">Es existiert kein Konto mit dieser E-Mail und diesem Passwort.</span>"; ?>
-
+    <div id="loginFormOuter">
+        <h1 id="loginHeading">LOGIN</h1>
+        <div id="loginFormInner">
+            <form method="post">
+                <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if (!empty($username)) echo $username ?>"/>
+                <br>
+                <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($username)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte gib einen Nutzernamen ein.</span><br>"; //Username-Fehler ?>
+                <br>
+                <input type="password" id="password" name="password" placeholder="Passwort">
+                <br>
+                <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($password)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte gib ein Passwort ein.</span><br>"; //Password-Fehler ?>
+                <br>
+                <?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\" style=\"color: red\">Es existiert kein Konto mit dieser E-Mail und diesem Passwort.</span>"; ?>
+                <br>
+                <input type="submit" formaction="login.php" value="Login">
+                <br>
+                <br>
+                <button type="submit" formaction="register.php">Registrieren</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
