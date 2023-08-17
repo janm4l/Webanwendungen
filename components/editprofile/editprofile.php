@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     if($email_final != $info['email']){
         $email_validated = validateEmail(trim($_POST['email']));
     }else{
-        $email_validated = true;
+        $email_validated = true; //Wenn die E-Mail nicht geändert wurde, kann/muss sie nicht neu validiert werden
     }
     
     // Nutzernamen überprüfen
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     if($username_final != $info['username']){
         $username_validated = validateUsername(trim($_POST['username']));
     }else{
-        $username_validated = true;
+        $username_validated = true;//Wenn der Nutzername nicht geändert wurde, kann/muss sie nicht neu validiert werden
     }
     
     // Straße überprüfen
@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     
     // Postleitzahl überprüfen
     $postcode_final = '';
-    $postcode_valideted = validatePostcode(trim($_POST['postcode']));
+    $postcode_validated = validatePostcode(trim($_POST['postcode']));
     
     // Stadt überprüfen
     $city_final = '';
@@ -78,7 +78,13 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     $forename_msg = validateInputLength(trim($_POST['forename']), 100);
     if($forename_msg == '') $forename_final = trim($_POST['forename']);
     
-
+    if($email_validated && $username_validated && $postcode_validated && $street_msg == '' && $street_number_msg == '' && $city_msg == '' && $name_msg == '' && $forename_msg == ''){
+        $result = updateInfo($username_final, $email_final, $street_final, $street_number_final, $postcode_final, $city_final, $newprofilepicturepath, $name_final, $forename_final);
+        if($result){
+            header("location: /components/profile/profile.php");
+            die();
+        }
+    }
 }
 
 
@@ -94,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <body>
 
 
-<form>
+<form method="post">
     <input type="file" id="profilepicture" name="profilepicture">
     <br>
     <br>
@@ -102,49 +108,57 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>"/>
     <br>
+    <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
     Vorname
     <br>
     <input type="text" id="forename" name="forename" placeholder="Max" value="<?php echo $info['forename'] ?>">
     <br>
+    <?php if (!empty($forename_msg)) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Vorname-Fehler ?>
     <br>
     Nachname
     <br>
     <input type="text" id="name" name="name" placeholder="Mustermann" value="<?php echo $info['name'] ?>">
     <br>
+    <?php if (!empty($name_msg)) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Nachname-Fehler ?>
     <br>
     Nutzername
     <br>
     <input type="text" id="username" name="username" placeholder="mein nutzername" value="<?php echo $info['username'] ?>">
     <br>
+    <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Nutzername-Fehler ?>
     <br>
     Straße
     <br>
     <input type="text" id="street" name="street" placeholder="meine Street" value="<?php echo $info['street'] ?>">
     <br>
+    <?php if (!empty($street_msg)) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Straße-Fehler ?>
     <br>
     Hausnummer
     <br>
     <input type="text" id="street_number" name="street_number" placeholder="meine Hausnummer" value="<?php echo $info['street_number'] ?>">
     <br>
+    <?php if (!empty($street_number_msg)) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Hausnummer-Fehler ?>
     <br>
     Postleitzahl
     <br>
     <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>">
     <br>
+    <?php if (isset($postcode_validated) && !$postcode_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Postleitzahl-Fehler ?>
     <br>
     Stadt
     <br>
     <input type="text" id="city" name="city" placeholder="meine Stadt" value="<?php echo $info['city'] ?>">
     <br>
+    <?php if (!empty($city_msg)) echo "<span class=\"errormessage\">$email_msg</span><br>"; //Stadt-Fehler ?>
     <br>
-    Account erstelle am:
+    Account erstellt am:
     <br>
     <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?>" readonly>
     <br>
     <br>
     <input type="submit" value="Speichern" formaction="/components/editprofile/editprofile.php">
-    </form>
+</form>
 <br>
 <form>
 <button type="submit" formaction="/components/changepassword/changepassword.php">Passwort &auml;ndern</button>
