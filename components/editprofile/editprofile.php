@@ -43,7 +43,6 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     $email_final = '';
     $email_validated = false;
     if(trim($_POST['email']) != $info['email']){
-        echo "Email test";
         $email_validated = validateEmail(trim($_POST['email']));
     }else{
         $email_validated = true;
@@ -63,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     // Straße überprüfen
     $street_final = '';
     $street_msg = validateInputLength(trim($_POST['street']), 50);
-    if(!empty($street_msg)) $street_final = trim($_POST['street']);
+    if($street_msg == '') $street_final = trim($_POST['street']);
     
     // Hausnummer überprüfen
     $street_number_final = '';

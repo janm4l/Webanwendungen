@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     
     if(!empty($username) && !empty($password)){
         // Prepare a select statement
-        $sql = "SELECT id, password_hashed FROM users WHERE username = ?";
+        $sql = "SELECT id, password_hashed FROM users WHERE UPPER(username) = UPPER(?)";
         global $conn;
 
             

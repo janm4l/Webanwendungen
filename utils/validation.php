@@ -13,7 +13,7 @@ function validateEmail($email){
     }
 
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE email = ?";
+    $sql = "SELECT id FROM users WHERE UPPER(email) LIKE UPPER(?)";
     global $conn;
         
     if($stmt = mysqli_prepare($conn, $sql)){
@@ -63,7 +63,7 @@ function validateUsername($username){
     } 
 
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE username = ?";
+    $sql = "SELECT id FROM users WHERE UPPER(username) LIKE UPPER(?)";
     global $conn;
         
     if($stmt = mysqli_prepare($conn, $sql)){
