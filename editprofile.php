@@ -17,7 +17,9 @@
 
     <input type="submit" value="Speichern" formaction="profile.php">
     </form>
-
+<br>
+<form>
+<button type="submit" formaction="changepassword.php">Passwort &auml;ndern</button>
 </form>
 
 </body>

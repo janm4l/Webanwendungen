@@ -231,15 +231,21 @@ function checkPasswordRequirements($password){
     <br>
     <input type="text" id="vorname" name="vorname" placeholder="Vorname">
     <br>
+    <br>
     <input type="text" id="nachname" name="nachname" placeholder="Nachname">
+    <br>
     <br>
     <input type="text" id="postleitzahl" name="postleitzahl" placeholder="Postleitzahl">
     <br>
+    <br>
     <input type="text" id="ort" name="ort" placeholder="Ort">
+    <br>
     <br>
     <input type="text" id="straße" name="straße" placeholder="Straße">
     <br>
+    <br>
     <input type="text" id="hausnummer" name="hausnummer" placeholder="Hausnummer">
+    <br>
     <br>
     <input type="submit" formaction="register.php" value="Registrieren">
 </form>

@@ -92,7 +92,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     <input type="submit" formaction="login.php" value="Login">
 </form>
-<?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\" style=\"color: red\">Es existiert kein Konto mit diesem Nutzernamengit commi und diesem Passwort.</span>"; ?>
+<br>
+
+<?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\" style=\"color: red\">Es existiert kein Konto mit diesem Nutzernamen und diesem Passwort.</span>"; ?>
 
 </body>
 </html>
