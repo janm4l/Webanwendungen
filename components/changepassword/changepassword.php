@@ -23,11 +23,11 @@
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($checknewpassword)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte bestätige dein neues Passwort.</span><br>"; //Password-Fehler ?>
     <br>
     <br>
-    <input type="submit" formaction="changepassword.php" value="Passwort &auml;ndern">
+    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern">
 </form>
 <br>
 <form>
-<button type="submit" formaction="profile.php">Profil</button>
+<button type="submit" formaction="/components/profile/profile.php">Profil</button>
 </form>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <?php
 
-include 'utils/db.php';
-include 'utils/user.php';
-include 'utils/validation.php';
-include 'utils/filestorage.php';
+include '../../utils/db.php';
+include '../../utils/user.php';
+include '../../utils/validation.php';
+include '../../utils/filestorage.php';
 
 if(!isLoggedIn()){
-    header("location: login.php");
+    header("location: /components/login/login.php");
     die();
 }
 
@@ -139,11 +139,11 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?>" readonly>
     <br>
     <br>
-    <input type="submit" value="Speichern" formaction="editprofile.php">
+    <input type="submit" value="Speichern" formaction="/components/editprofile/editprofile.php">
     </form>
 <br>
 <form>
-<button type="submit" formaction="changepassword.php">Passwort &auml;ndern</button>
+<button type="submit" formaction="/components/changepassword/changepassword.php">Passwort &auml;ndern</button>
 </form>
 
 </body>

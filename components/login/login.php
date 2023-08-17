@@ -1,10 +1,10 @@
 <?php
 
-include 'utils/db.php';
-include 'utils/user.php';
+include '../../utils/db.php';
+include '../../utils/user.php';
 
 if(isLoggedIn()){
-    header("location: profile.php");
+    header("location: /components/profile/profile.php");
     die();
 }
 
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         }
 
         if($success){
-            header("location: profile.php");
+            header("location: /components/profile/profile.php");
             die();
         }
     }
@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <html>
 <title>Login</title>
 <head>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/components/login/login.css">
 </head>
 <body>
     <div id="loginFormOuter">
@@ -94,10 +94,10 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <br>
                 <?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\" style=\"color: red\">Es existiert kein Konto mit dieser E-Mail und diesem Passwort.</span>"; ?>
                 <br>
-                <input type="submit" formaction="login.php" value="Login">
+                <input type="submit" formaction="/components/login/login.php" value="Login">
                 <br>
                 <br>
-                <button type="submit" formaction="register.php">Registrieren</button>
+                <button type="submit" formaction="/components/register/register.php">Registrieren</button>
             </form>
         </div>
     </div>

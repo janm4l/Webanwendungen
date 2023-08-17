@@ -1,7 +1,7 @@
 <?php
 
-    include 'utils/user.php';
+    include '../../utils/user.php';
     logout();
-    header("location: login.php");
+    header("location: /components/login/login.php");
 
 ?>

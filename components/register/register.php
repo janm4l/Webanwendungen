@@ -1,8 +1,8 @@
 <?php
 
-include 'utils/db.php';
-include 'utils/user.php';
-include 'utils/validation.php';
+include '../../utils/db.php';
+include '../../utils/user.php';
+include '../../utils/validation.php';
 
 $email_msg = '';
 $username_msg = '';
@@ -10,7 +10,7 @@ $password_msg = '';
 $confirm_password_msg = '';
 
 if(isLoggedIn()){
-    header("location: profile.php");
+    header("location: /components/profile/profile.php");
     die();
 }
 
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 login($userid);
 
                 // Redirect to login page
-                header("location: profile.php");
+                header("location: /components/profile/profile.php");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <input type="text" id="hausnummer" name="hausnummer" placeholder="Hausnummer">
     <br>
     <br>
-    <input type="submit" formaction="register.php" value="Registrieren">
+    <input type="submit" formaction="/components/register/register.php" value="Registrieren">
 </form>
 
 </body>
