@@ -81,11 +81,13 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 <form method="post">
     Nutzername
+    <br>
     <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if (!empty($username)) echo $username ?>"/>
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($username)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte gib einen Nutzernamen ein.</span><br>"; //Username-Fehler ?>
     <br>
     <br>
     Passwort
+    <br>
     <input type="password" id="password" name="password" placeholder="Passwort">
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($password)) echo "<span class=\"errormessage\" style=\"color: red\">Bitte gib ein Passwort ein.</span><br>"; //Password-Fehler ?>
     <br>
