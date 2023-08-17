@@ -78,6 +78,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <title>Login</title>
 <head>
     <link rel="stylesheet" href="/components/login/login.css">
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
     <div id="loginFormOuter">

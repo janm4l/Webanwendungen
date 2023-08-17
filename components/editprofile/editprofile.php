@@ -87,6 +87,10 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <!DOCTYPE html>
 <html>
 <title>Profil Bearbeiten</title>
+<head>
+    <link rel="stylesheet" href="/components/editprofile/editprofile.css">
+    <link rel="stylesheet" href="/main.css">
+</head>
 <body>
 
 

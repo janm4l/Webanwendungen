@@ -67,6 +67,10 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <!DOCTYPE html>
 <html>
 <title>Registrieren</title>
+<head>
+    <link rel="stylesheet" href="/components/register/register.css">
+    <link rel="stylesheet" href="/main.css">
+</head>
 <body>
 
 <form method="post">
