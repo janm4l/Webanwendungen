@@ -2,6 +2,8 @@
 
 include 'utils/db.php';
 include 'utils/user.php';
+include 'utils/validation.php';
+include 'utils/filestorage.php';
 
 if(!isLoggedIn()){
     header("location: login.php");
@@ -9,6 +11,77 @@ if(!isLoggedIn()){
 }
 
 $info = getUserInfo();
+
+$email_msg = '';
+$username_msg = '';
+$password_msg = '';
+$confirm_password_msg = '';
+
+
+// Die folgenden Schritte werden nur ausgeführt, wenn ein Formular abgesendet wurde (also nicht bei erstmaligem Aufruf der Seite)
+// Wenn der Nutzer auf editprofile.php sein Profil aktualisiert, sollen die Änderungen hier verarbeitet werden.
+if($_SERVER["REQUEST_METHOD"] === 'POST'){
+
+    $newprofilepicturepath = '';
+    // if picture uploaded
+    if(isset($_FILES["profilepicture"])){
+        $result = storgeProfilePicture();
+        if($result[0]){
+            $newprofilepicturepath = $result[1];
+        }
+    }
+
+    // E-Mail überprüfen
+    $email_final = '';
+    $email_validated = false;
+    if($email_final != $info['email']){
+        $email_validated = validateEmail(trim($_POST['email']));
+    }else{
+        $email_validated = true;
+    }
+    
+    // Nutzernamen überprüfen
+    $username_final = '';
+    $username_validated = false;
+    if($username_final != $info['username']){
+        $username_validated = validateUsername(trim($_POST['username']));
+    }else{
+        $username_validated = true;
+    }
+    
+    // Straße überprüfen
+    $street_final = '';
+    $street_msg = validateInputLength(trim($_POST['street_number']), 50);
+    if($street_msg == '') $street_final = trim($_POST['street_number']);
+    
+    // Hausnummer überprüfen
+    $street_number_final = '';
+    $street_number_msg = validateInputLength(trim($_POST['street_number']), 10);
+    if($street_number_msg == '') $street_number_final = trim($_POST['street_number']);
+    
+    // Postleitzahl überprüfen
+    $postcode_final = '';
+    $postcode_valideted = validatePostcode(trim($_POST['postcode']));
+    
+    // Stadt überprüfen
+    $city_final = '';
+    $city_msg = validateInputLength(trim($_POST['city']), 50);
+    if($city_msg == '') $city_final = trim($_POST['city']);
+        
+    // Name überprüfen
+    $name_final = '';
+    $name_msg = validateInputLength(trim($_POST['name']), 100);
+    if($name_msg == '') $name_final = trim($_POST['name']);
+    
+    // Vorname überprüfen
+    $forename_final = '';
+    $forename_msg = validateInputLength(trim($_POST['forename']), 100);
+    if($forename_msg == '') $forename_final = trim($_POST['forename']);
+    
+
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +91,7 @@ $info = getUserInfo();
 
 
 <form>
-    <input type="file" id="profilbild" name="profilbild">
+    <input type="file" id="profilepicture" name="profilepicture">
     <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>"/>
     <input type="text" id="forename" name="forename" placeholder="Max" value="<?php echo $info['forename'] ?>">
     <input type="text" id="name" name="name" placeholder="Mustermann" value="<?php echo $info['name'] ?>">

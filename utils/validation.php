@@ -130,6 +130,33 @@ function validateConfirmPassword($confirm_password){
     
 }
 
+function validateInputLength($input, $maxlength){
+    if(strlen($input) > $maxlength){
+        $password_msg = ;
+        return "Die Eingabe darf höchstens $maxlength Zeichen lang sein.";  
+    }else{
+        return "";
+    }
+}
+
+function validatePostcode($postcode){
+    global $postcode_msg;
+    if(!is_numeric($postcode)){
+        $postcode_msg = "Die Postleitzahl muss eine Zahl sein.";
+        return false;
+    }
+
+    if($postcode < 1000 || $postcode > 99999){
+        $postcode_msg = "Die Postleitzahl muss vier- oder fünfstellig sein.";
+    }
+
+    global $postcode_final;
+    $postcode_final = $postcode;
+    return true;
+}
+
+
+
 function checkPasswordRequirements($password){
     if (strlen($password) < 8) return false; //Prüfen, ob Passwort mindestens 8 Zeichen lang ist
     if (!preg_match('/\W/', $password)) return false; //Prüfen, ob mindestens ein Sonderzeichen vorhanden ist

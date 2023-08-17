@@ -36,57 +36,32 @@
         }
     }
 
-    function updateInfo(){
+    function updateInfo($username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename){
         if(isLoggedIn()){
             // Prepare a select statement
-            $sql = "SELECT username, email, create_datetime, street, street_number, postcode, city, profile_picture, name, forename FROM users WHERE id = ?";
+            $sql = "UPDATE SET username = ?, email  = ?, street = ?, street_number = ?, postcode = ?, city = ?, profile_picture = ?, name = ?, forename = ? FROM users WHERE id = ?";
             global $conn;
 
                 
             if($stmt = mysqli_prepare($conn, $sql)){
                 $param_id = getUserId();
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "s", $param_id);
+                mysqli_stmt_bind_param($stmt, "ssssissssss", $username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename, $param_id);
 
                     
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
-                    /* store result */
-                    mysqli_stmt_store_result($stmt);
-
-                    /* bind result variables */
-                    mysqli_stmt_bind_result($stmt, $username, $email, $create_datetime, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename);
-                        
-                    if(mysqli_stmt_num_rows($stmt) < 1){
-                        echo "Keine Userinfo";
-                        return null;
-                    } else {
-                        $info = array();
-                        while (mysqli_stmt_fetch($stmt)){
-                            $info['username'] = $username;
-                            $info['email'] = $email;
-                            $info['create_datetime'] = $create_datetime;
-                            $info['street'] = $street;
-                            $info['street_number'] = $street_number;
-                            $info['postcode'] = $postcode;
-                            $info['city'] = $city;
-                            $info['profile_picture'] = $profile_picture;
-                            $info['name'] = $name;
-                            $info['forename'] = $forename;
-                            break;
-                        }
-                        return $info;
-                    }
+                    return true;
                 } else {
                     echo "Es ist ein fehler aufgetreten.";
-                    return null;
+                    return false;
                 }
                 // Close statement
                 mysqli_stmt_close($stmt);
                 
             }
         }else{
-            return null;
+            return false;
         }
     }
 
@@ -96,6 +71,21 @@
             TODO
         */
         
+    }
+
+    function getProfilePicturePath(){
+        $defaultfilepath = 'src/img/profile_standard.png';
+        $custom_path = 'content/profilepics/';
+        if(isLoggedIn()){
+            $info = getUserInfo();
+            if(!empty($info) && !empty($info['profile_picture'])){
+                return $custom_path . $info['profile_picture'];
+            }else{
+                return $defaultfilepath;
+            }
+        }else{
+            return $defaultfilepath;
+        }
     }
 
     /* 

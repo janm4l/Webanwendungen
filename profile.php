@@ -2,7 +2,6 @@
 
 include 'utils/db.php';
 include 'utils/user.php';
-include 'utils/validation.php';
 
 $email_msg = '';
 $username_msg = '';
@@ -15,13 +14,6 @@ if(!isLoggedIn()){
 $info = getUserInfo();
 
 
-// Die folgenden Schritte werden nur ausgeführt, wenn ein Formular abgesendet wurde (also nicht bei erstmaligem Aufruf der Seite)
-// Wenn der Nutzer auf editprofile.php sein Profil aktualisiert, sollen die Änderungen hier verarbeitet werden.
-if($_SERVER["REQUEST_METHOD"] === 'POST'){
-
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +23,8 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <form>
     <button type="submit" formaction="logout.php">Logout</button>
 </form>
-    <?php if(isLoggedIn()) echo "<h1>Hallo " .  $info['username'] . ", du bist eingeloggt und hast die UserId " . getUserId() . "</h1>"; ?>
-    <img src="src/img/profile_picturetest.png" alt="Bild nicht geladen" width="200" height="200">
+    <?php echo "<h1>Hallo " .  $info['username'] . ", du bist eingeloggt und hast die UserId " . getUserId() . "</h1>"; ?>
+    <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200">
     <input type="email" id="email" name="email" placeholder="Meine E-Mail" readonly="readonly" value="<?php echo $info['email'] ?>"/>
     <input type="text" id="forename" name="forename" placeholder="Max" readonly="readonly" value="<?php echo $info['forename'] ?>">
     <input type="text" id="name" name="name" placeholder="Mustermann" readonly="readonly" value="<?php echo $info['name'] ?>">
