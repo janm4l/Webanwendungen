@@ -1,3 +1,16 @@
+<?php
+
+include 'utils/db.php';
+include 'utils/user.php';
+
+if(!isLoggedIn()){
+    header("location: login.php");
+    die();
+}
+
+$info = getUserInfo();
+
+?>
 <!DOCTYPE html>
 <html>
 <title>Profil Bearbeiten</title>
@@ -6,16 +19,17 @@
 
 <form>
     <input type="file" id="profilbild" name="profilbild">
-    <input type="email" id="email" name="email" placeholder="meine E-Mail" />
-    <input type="text" id="vorname" name="vorname" placeholder="Max">
-    <input type="text" id="nachname" name="nachname" placeholder="Mustermann" >
-    <input type="text" id="nutzername" name="nutzername" placeholder="meine nutzername">
-    <input type="text" id="strasse" name="strasse" placeholder="meine Strasse" >
-    <input type="text" id="hausnummer" name="hausnummer" placeholder="55a" >
-    <input type="text" id="postleitzahl" name="postleitzahl" placeholder="44444" >
-    <input type="text" id="stadt" name="stadt" placeholder="meine Stadt" >
+    <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>"/>
+    <input type="text" id="forename" name="forename" placeholder="Max" value="<?php echo $info['forename'] ?>">
+    <input type="text" id="name" name="name" placeholder="Mustermann" value="<?php echo $info['name'] ?>">
+    <input type="text" id="username" name="username" placeholder="mein nutzername" value="<?php echo $info['username'] ?>">
+    <input type="text" id="street" name="street" placeholder="meine Strasse" value="<?php echo $info['street'] ?>">
+    <input type="text" id="street_number" name="street_number" placeholder="meine Strasse" value="<?php echo $info['street_number'] ?>">
+    <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>">
+    <input type="text" id="city" name="city" placeholder="meine Stadt" value="<?php echo $info['city'] ?>">
+    <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?>">
 
-    <input type="submit" value="Speichern" formaction="profile.php">
+    <input type="submit" value="Speichern" formaction="editprofile.php">
     </form>
 
 </form>

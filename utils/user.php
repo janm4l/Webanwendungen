@@ -36,13 +36,10 @@
         }
     }
 
-    /* 
-        Vor der Verwendung bitte utils/db.php importieren!!!
-    */
-    function getUserInfo(){
+    function updateInfo(){
         if(isLoggedIn()){
             // Prepare a select statement
-            $sql = "SELECT username, email, create_datetime, street, postcode, city, profile_picture, name, forename, street_nr FROM users WHERE id = ?";
+            $sql = "SELECT username, email, create_datetime, street, street_number, postcode, city, profile_picture, name, forename FROM users WHERE id = ?";
             global $conn;
 
                 
@@ -58,7 +55,7 @@
                     mysqli_stmt_store_result($stmt);
 
                     /* bind result variables */
-                    mysqli_stmt_bind_result($stmt, $username, $email, $create_datetime, $street, $postcode, $city, $profile_picture, $name, $forename, $street_nr);
+                    mysqli_stmt_bind_result($stmt, $username, $email, $create_datetime, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename);
                         
                     if(mysqli_stmt_num_rows($stmt) < 1){
                         echo "Keine Userinfo";
@@ -70,12 +67,77 @@
                             $info['email'] = $email;
                             $info['create_datetime'] = $create_datetime;
                             $info['street'] = $street;
+                            $info['street_number'] = $street_number;
                             $info['postcode'] = $postcode;
                             $info['city'] = $city;
                             $info['profile_picture'] = $profile_picture;
                             $info['name'] = $name;
                             $info['forename'] = $forename;
-                            $info['street_nr'] = $street_nr;
+                            break;
+                        }
+                        return $info;
+                    }
+                } else {
+                    echo "Es ist ein fehler aufgetreten.";
+                    return null;
+                }
+                // Close statement
+                mysqli_stmt_close($stmt);
+                
+            }
+        }else{
+            return null;
+        }
+    }
+
+    function changePassword(){
+
+        /*
+            TODO
+        */
+        
+    }
+
+    /* 
+        Vor der Verwendung bitte utils/db.php importieren!!!
+    */
+    function getUserInfo(){
+        if(isLoggedIn()){
+            // Prepare a select statement
+            $sql = "SELECT username, email, create_datetime, street, street_number, postcode, city, profile_picture, name, forename FROM users WHERE id = ?";
+            global $conn;
+
+                
+            if($stmt = mysqli_prepare($conn, $sql)){
+                $param_id = getUserId();
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "s", $param_id);
+
+                    
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    /* store result */
+                    mysqli_stmt_store_result($stmt);
+
+                    /* bind result variables */
+                    mysqli_stmt_bind_result($stmt, $username, $email, $create_datetime, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename);
+                        
+                    if(mysqli_stmt_num_rows($stmt) < 1){
+                        echo "Keine Userinfo";
+                        return null;
+                    } else {
+                        $info = array();
+                        while (mysqli_stmt_fetch($stmt)){
+                            $info['username'] = $username;
+                            $info['email'] = $email;
+                            $info['create_datetime'] = $create_datetime;
+                            $info['street'] = $street;
+                            $info['street_number'] = $street_number;
+                            $info['postcode'] = $postcode;
+                            $info['city'] = $city;
+                            $info['profile_picture'] = $profile_picture;
+                            $info['name'] = $name;
+                            $info['forename'] = $forename;
                             break;
                         }
                         return $info;
@@ -102,4 +164,6 @@
             return true;
         }
     }
+
+
 ?>

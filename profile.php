@@ -2,6 +2,10 @@
 
 include 'utils/db.php';
 include 'utils/user.php';
+include 'utils/validation.php';
+
+$email_msg = '';
+$username_msg = '';
 
 if(!isLoggedIn()){
     header("location: login.php");
@@ -9,6 +13,14 @@ if(!isLoggedIn()){
 }
 
 $info = getUserInfo();
+
+
+// Die folgenden Schritte werden nur ausgeführt, wenn ein Formular abgesendet wurde (also nicht bei erstmaligem Aufruf der Seite)
+// Wenn der Nutzer auf editprofile.php sein Profil aktualisiert, sollen die Änderungen hier verarbeitet werden.
+if($_SERVER["REQUEST_METHOD"] === 'POST'){
+
+
+}
 
 ?>
 
@@ -26,6 +38,7 @@ $info = getUserInfo();
     <input type="text" id="nachname" name="nachname" placeholder="Mustermann" readonly="readonly" value="<?php echo $info['name'] ?>">
     <input type="text" id="nutzername" name="nutzername" placeholder="mein nutzername" readonly="readonly" value="<?php echo $info['username'] ?>">
     <input type="text" id="strasse" name="strasse" placeholder="meine Strasse" readonly="readonly" value="<?php echo $info['street'] ?>">
+    <input type="text" id="street_number" name="street_number" placeholder="meine Strasse" readonly="readonly" value="<?php echo $info['street_number'] ?>">
     <input type="text" id="postleitzahl" name="postleitzahl" placeholder="44444" readonly="readonly" value="<?php echo $info['postcode'] ?>">
     <input type="text" id="stadt" name="stadt" placeholder="meine Stadt" readonly="readonly" value="<?php echo $info['city'] ?>">
     <input type="text" id="accountErstelltAm" name="accountErstelltAm" placeholder="account erstellt am: 01.01.2000" readonly="readonly" value="<?php echo $info['create_datetime'] ?>">
