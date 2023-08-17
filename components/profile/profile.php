@@ -19,6 +19,10 @@ $info = getUserInfo();
 <!DOCTYPE html>
 <html>
 <title>Profil</title>
+<head>
+    <link rel="stylesheet" href="/components/profile/profile.css">
+    <link rel="stylesheet" href="/main.css">
+</head>
 <body>
 <form>
     <button type="submit" formaction="/components/logout/logout.php">Logout</button>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <title>Login</title>
+<head>
+    <link rel="stylesheet" href="/components/changepassword/changepassword.css">
+    <link rel="stylesheet" href="/main.css">
+</head>
 <body>
 
 
