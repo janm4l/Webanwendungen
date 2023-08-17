@@ -54,7 +54,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 </head>
 <body>
 
-
+<div id="changepasswordFormOuter">
+<h1 id="changepasswordHeading">Passwort &auml;ndern</h1>
+<div id="changepasswordFormInner">
 <form method="post">
     <?php if (isset($result) && $result) echo "<h1 class=\"successmessage\">Dein Passwort wurde erfolgreich geändert.</h1><br>"; ?>
     Altes Passwort
@@ -78,11 +80,11 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Passwort-Fehler ?>
     <br>
     <br>
-    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern">
+    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern"> <a href="/components/profile/profile.php" class="button">Profil</a>
 </form>
 <br>
-<form>
-<button type="submit" formaction="/components/profile/profile.php" class="button">Profil</button>
-</form>
+
+</div>
+</div>
 </body>
 </html>

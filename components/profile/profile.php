@@ -24,10 +24,14 @@ $info = getUserInfo();
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
+<div id="profileFormOuter">
+<h1 id="profileHeading">Register</h1>
+<div id="profileFormInner">
 <form>
     <button type="submit" formaction="/components/logout/logout.php" class="button">Logout</button>
 </form>
     <?php echo "<h1>Hallo " .  $info['username'] . ", du bist eingeloggt und hast die UserId " . getUserId() . "</h1>"; ?>
+    <form>
     <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200">
     <br>
     <br>
@@ -76,9 +80,11 @@ $info = getUserInfo();
     <input type="text" id="accountErstelltAm" name="accountErstelltAm" placeholder="01.01.2000" readonly="readonly" value="<?php echo $info['create_datetime'] ?>" readonly class="inputfield">
     <br>
     <br>
+    </form>
     <form>
         <button type="submit" formaction="/components/editprofile/editprofile.php" class="button">Bearbeiten</button>
     </form>
-
+</div>
+</div>
 </body>
 </html>
