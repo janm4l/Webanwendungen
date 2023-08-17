@@ -37,8 +37,17 @@ body {
 .errormessage{
     color: #9f0202;
     font-weight: bold;
+    display: block;
 }
 
 .inputfield{
+    width: 100%;
+    padding: 15px 30px;
+    border-radius: 15px;
+    background-color: #e3e3e3;
+    text-align: left;
+}
 
+form{
+    width: 20%;
 }

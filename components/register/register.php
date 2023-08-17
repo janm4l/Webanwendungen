@@ -79,7 +79,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-
+<div id="registerFormOuter">
+<h1 id="registerHeading">Register</h1>
+<div id="registerFormInner">
 <form method="post">
     Email *
     <br>
@@ -95,7 +97,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     Passwort *
     <br>
+    <div data-tip="This is the text of the tooltip2">
     <input type="password" id="password" name="password" placeholder="Passwort" required="required" class="inputfield">
+    </div>
     <br>
     <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\"\>$password_msg</span><br>"; //Password-Fehler ?>
     <br>
@@ -137,6 +141,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     <input type="submit" formaction="/components/register/register.php" value="Registrieren" class="button">
 </form>
-
+</div>
+</div>
 </body>
 </html>
