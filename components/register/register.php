@@ -102,7 +102,6 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     </div>
     <br>
     <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\"\>$password_msg</span><br>"; //Password-Fehler ?>
-    <br>
     Passwort Bestätigen *
     <br>
     <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Bestätigen" required="required" class="inputfield">
