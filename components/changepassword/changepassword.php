@@ -11,21 +11,21 @@
 <form method="post">
     Altes Passwort
     <br>
-    <input type="password" id="oldpassword" name="oldpassword" placeholder="Altes Passwort" value="<?php if (!empty($oldpassword)) echo $oldpassword ?>"/>
+    <input type="password" id="oldpassword" name="oldpassword" placeholder="Altes Passwort" value="<?php if (!empty($oldpassword)) echo $oldpassword ?>" class="inputfield">
     <br>
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($oldpassword)) echo "<span class=\"errormessage\">Bitte gib dein altes Passwort ein.</span><br>"; //Username-Fehler ?>
     <br>
     <br>
     Neues Passwort
     <br>
-    <input type="password" id="newpassword" name="newpassword" placeholder="Neues Passwort">
+    <input type="password" id="newpassword" name="newpassword" placeholder="Neues Passwort" class="inputfield">
     <br>
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($newpassword)) echo "<span class=\"errormessage\">Bitte gib ein neues Passwort ein.</span><br>"; //Password-Fehler ?>
     <br>
     <br>
     Neues Passwort Best&auml;tigen
     <br>
-    <input type="password" id="checknewpassword" name="checknewpassword" placeholder="Neues Passwort bestätigen">
+    <input type="password" id="checknewpassword" name="checknewpassword" placeholder="Neues Passwort bestätigen" class="inputfield">
     <br>
     <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($checknewpassword)) echo "<span class=\"errormessage\">Bitte bestätige dein neues Passwort.</span><br>"; //Password-Fehler ?>
     <br>

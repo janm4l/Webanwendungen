@@ -30,4 +30,15 @@ body {
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
+
+
+}
+
+.errormessage{
+    color: #9f0202;
+    font-weight: bold;
+}
+
+.inputfield{
+
 }
