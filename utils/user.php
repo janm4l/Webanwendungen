@@ -36,6 +36,67 @@
         }
     }
 
+    function registerAndLoginUser($email, $username, $password){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (email, username, password_hashed) VALUES (?, ?, ?)";
+         
+        global $conn;
+        if($stmt = mysqli_prepare($conn, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "sss", $param_email, $param_username, $param_password);
+            
+            // Set parameters
+            $param_email = $email;
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                $userid = mysqli_insert_id($conn);
+                login($userid);
+                return true;
+            } else {
+                echo "Es ist ein Fehler aufgetreten.";
+                return false;
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    function updateUserPassword($new_password){
+        if(isLoggedIn()){
+            // Prepare an insert statement
+            $sql = "UPDATE users SET password_hashed = ? WHERE id = ?";
+            global $conn;
+                    
+            if($stmt = mysqli_prepare($conn, $sql)){
+                // Set parameters
+                $param_password = password_hash($new_password, PASSWORD_DEFAULT); // Creates a password hash
+                $param_userid = getUserId();
+
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "ss", $param_password, $param_userid);
+                        
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    return true;
+                } else {
+                    echo "Es ist ein Fehler aufgetreten.";
+                    return false;
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
+            }
+        }else{
+            return false;
+        }
+        
+    }
+
     function updateInfo($username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename){
         if(isLoggedIn()){
             // Prepare a select statement
@@ -105,7 +166,7 @@
     function getUserInfo(){
         if(isLoggedIn()){
             // Prepare a select statement
-            $sql = "SELECT username, email, create_datetime, street, street_number, postcode, city, profile_picture, name, forename FROM users WHERE id = ?";
+            $sql = "SELECT username, email, password_hashed, create_datetime, street, street_number, postcode, city, profile_picture, name, forename FROM users WHERE id = ?";
             global $conn;
 
                 
@@ -121,7 +182,7 @@
                     mysqli_stmt_store_result($stmt);
 
                     /* bind result variables */
-                    mysqli_stmt_bind_result($stmt, $username, $email, $create_datetime, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename);
+                    mysqli_stmt_bind_result($stmt, $username, $email, $password_hashed, $create_datetime, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename);
                         
                     if(mysqli_stmt_num_rows($stmt) < 1){
                         echo "Keine Userinfo";
@@ -131,6 +192,7 @@
                         while (mysqli_stmt_fetch($stmt)){
                             $info['username'] = $username;
                             $info['email'] = $email;
+                            $info['password_hashed'] = $password_hashed;
                             $info['create_datetime'] = $create_datetime;
                             $info['street'] = $street;
                             $info['street_number'] = $street_number;

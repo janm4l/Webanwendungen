@@ -34,32 +34,10 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     
     // Check input errors before inserting in database
     if($email_validated && $username_validated && $password_validated && $confirm_password_validated){
-        
-        // Prepare an insert statement
-        $sql = "INSERT INTO users (email, username, password_hashed) VALUES (?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($conn, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_email, $param_username, $param_password);
-            
-            // Set parameters
-            $param_email = $email_final;
-            $param_username = $username_final;
-            $param_password = password_hash($password_final, PASSWORD_DEFAULT); // Creates a password hash
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                $userid = mysqli_insert_id($conn);
-                login($userid);
-
-                // Redirect to login page
-                header("location: /components/profile/profile.php");
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
+        $registered = registerAndLoginUser($email_final, $username_final, $password_final);
+        if($registered){
+            // Redirect to login page
+            header("location: /components/profile/profile.php");
         }
     }
     

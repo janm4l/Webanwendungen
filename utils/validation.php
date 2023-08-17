@@ -115,7 +115,7 @@ function validatePassword($password){
 function validateConfirmPassword($confirm_password){
     global $confirm_password_msg;
     if(empty($confirm_password)){
-        $confirm_password_msg = "Bitte gib dein Password erneut ein.";
+        $confirm_password_msg = "Bitte gib dein Passwort erneut ein.";
         return false;     
     }
     

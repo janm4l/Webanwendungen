@@ -40,6 +40,12 @@ body {
     display: block;
 }
 
+.successmessage{
+    color: #17c200;
+    font-weight: bold;
+    display: block;
+}
+
 .inputfield{
     width: 100%;
     padding: 15px 30px;
