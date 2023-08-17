@@ -74,8 +74,8 @@
     }
 
     function getProfilePicturePath(){
-        $defaultfilepath = 'assets/images/profile_standard.png';
-        $custom_path = 'content/profilepics/';
+        $defaultfilepath = '/assets/images/profile_standard.png';
+        $custom_path = '/content/profilepics/';
         if(isLoggedIn()){
             $info = getUserInfo();
             if(!empty($info) && !empty($info['profile_picture'])){
