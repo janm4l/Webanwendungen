@@ -96,7 +96,8 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <br>
                 <input type="submit" formaction="login.php" value="Login">
                 <br>
-                <br>
+            </form>
+            <form>
                 <button type="submit" formaction="register.php">Registrieren</button>
             </form>
         </div>
