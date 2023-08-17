@@ -3,7 +3,7 @@
 include '../../utils/db.php';
 include '../../utils/user.php';
 include '../../utils/validation.php';
-include '../../utils/filestorage.php';
+include '../../filestorage.php';
 
 if(!isLoggedIn()){
     header("location: /components/login/login.php");
@@ -30,14 +30,16 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $newprofilepicturepath = '';
     // if picture uploaded
-    if(isset($_FILES["profilepicture"])){
-        $result = storgeProfilePicture();
+    if(isset($_FILES['profilepicture'])){
+        $result = storeProfilePicture();
         if($result[0]){
             $newprofilepicturepath = $result[1];
         }else{
-            $profile_picture_msg = '';
+            $profile_picture_msg = $result[1];
         }
     }
+
+    echo $newprofilepicturepath;
 
     // E-Mail überprüfen
     $email_final = '';
@@ -88,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     $forename_msg = validateInputLength(trim($_POST['forename']), 100);
     if($forename_msg == '') $forename_final = trim($_POST['forename']);
 
-    if($email_validated && $username_validated && $postcode_validated && $street_msg == '' && $street_number_msg == '' && $city_msg == '' && $name_msg == '' && $forename_msg == ''){
+    if($profile_picture_msg == '' && $email_validated && $username_validated && $postcode_validated && $street_msg == '' && $street_number_msg == '' && $city_msg == '' && $name_msg == '' && $forename_msg == ''){
         $result = updateInfo($username_final, $email_final, $street_final, $street_number_final, $postcode_final, $city_final, $newprofilepicturepath, $name_final, $forename_final);
         if($result){
             header("location: /components/profile/profile.php");
@@ -110,7 +112,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <body>
 
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 <div id="editprofileFormOuter">
 <h1 id="editprofileHeading">Profil bearbeiten</h1>
 <div id="editprofileFormInner">
@@ -118,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     <input type="file" id="profilepicture" name="profilepicture">
     <br>
-    <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //E-Mail-Fehler ?>
+    <?php if (!empty($profile_picture_msg)) echo "<span class=\"errormessage\">$profile_picture_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
     E-Mail
     <br>

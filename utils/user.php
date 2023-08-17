@@ -111,7 +111,7 @@
                 $param_street_number = (empty($street_number) ? null : $street_number);
                 $param_postcode = (empty($postcode) ? null : $postcode);
                 $param_city = (empty($city) ? null : $city);
-                $param_profile_picture = (empty($param_profile_picture) ? null : $param_profile_picture);
+                $param_profile_picture = (empty($profile_picture) ? null : $profile_picture);
                 $param_name = (empty($name) ? null : $name);
                 $param_forename = (empty($forename) ? null : $forename);
 
