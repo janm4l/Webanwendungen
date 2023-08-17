@@ -77,21 +77,39 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <body>
 
 <form method="post">
-    <input type="email" id="email" name="email" placeholder="E-Mail" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>"/>
+    <input type="email" id="email" name="email" placeholder="E-Mail" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" required="required"/>
     <br>
     <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\" style=\"color: red\">$email_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
-    <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if(isset($_POST['username'])) echo $_POST['username']; ?>">
+    <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if(isset($_POST['username'])) echo $_POST['username']; ?>" required="required">
     <br>
     <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\" style=\"color: red\">$username_msg</span><br>"; //Username-Fehler ?>
     <br>
-    <input type="password" id="password" name="password" placeholder="Passwort">
+    <input type="password" id="password" name="password" placeholder="Passwort" required="required">
     <br>
     <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\" style=\"color: red\">$password_msg</span><br>"; //Password-Fehler ?>
     <br>
-    <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Bestätigen">
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Bestätigen" required="required">
     <br>
     <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\" style=\"color: red\">$confirm_password_msg</span><br>"; //Confirm-Password-Fehler ?>
+    <br>
+    <input type="text" id="vorname" name="vorname" placeholder="Vorname">
+    <br>
+    <br>
+    <input type="text" id="nachname" name="nachname" placeholder="Nachname">
+    <br>
+    <br>
+    <input type="text" id="postleitzahl" name="postleitzahl" placeholder="Postleitzahl">
+    <br>
+    <br>
+    <input type="text" id="ort" name="ort" placeholder="Ort">
+    <br>
+    <br>
+    <input type="text" id="straße" name="straße" placeholder="Straße">
+    <br>
+    <br>
+    <input type="text" id="hausnummer" name="hausnummer" placeholder="Hausnummer">
+    <br>
     <br>
     <input type="submit" formaction="register.php" value="Registrieren">
 </form>

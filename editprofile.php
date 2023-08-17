@@ -31,7 +31,9 @@ $info = getUserInfo();
 
     <input type="submit" value="Speichern" formaction="editprofile.php">
     </form>
-
+<br>
+<form>
+<button type="submit" formaction="changepassword.php">Passwort &auml;ndern</button>
 </form>
 
 </body>
