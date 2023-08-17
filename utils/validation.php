@@ -134,20 +134,23 @@ function validateInputLength($input, $maxlength){
     if(strlen($input) > $maxlength){
         return "Die Eingabe darf höchstens $maxlength Zeichen lang sein.";  
     }else{
-        return "";
+        return '';
     }
 }
 
 function validatePostcode($postcode){
     global $postcode_msg;
-    if(!is_numeric($postcode)){
-        $postcode_msg = "Die Postleitzahl muss eine Zahl sein.";
-        return false;
+    if(!empty($postcode)){
+        if(!is_numeric($postcode)){
+            $postcode_msg = "Die Postleitzahl muss eine Zahl sein.";
+            return false;
+        }
+    
+        if($postcode < 1000 || $postcode > 99999){
+            $postcode_msg = "Die Postleitzahl muss vier- oder fünfstellig sein.";
+        }
     }
-
-    if($postcode < 1000 || $postcode > 99999){
-        $postcode_msg = "Die Postleitzahl muss vier- oder fünfstellig sein.";
-    }
+    
 
     global $postcode_final;
     $postcode_final = $postcode;

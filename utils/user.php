@@ -39,14 +39,25 @@
     function updateInfo($username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename){
         if(isLoggedIn()){
             // Prepare a select statement
-            $sql = "UPDATE SET username = ?, email  = ?, street = ?, street_number = ?, postcode = ?, city = ?, profile_picture = ?, name = ?, forename = ? FROM users WHERE id = ?";
+            $sql = "UPDATE users SET username = ?, email = ?, street = ?, street_number = ?, postcode = ?, city = ?, profile_picture = ?, name = ?, forename = ? WHERE id = ?";
             global $conn;
 
-                
             if($stmt = mysqli_prepare($conn, $sql)){
                 $param_id = getUserId();
+                $param_username = $username;
+                $param_email = $email;
+                $param_street = (empty($street) ? null : $street);
+                $param_street_number = (empty($street_number) ? null : $street_number);
+                $param_postcode = (empty($postcode) ? null : $postcode);
+                $param_city = (empty($city) ? null : $city);
+                $param_profile_picture = (empty($param_profile_picture) ? null : $param_profile_picture);
+                $param_name = (empty($name) ? null : $name);
+                $param_forename = (empty($forename) ? null : $forename);
+
+                echo $sql = "UPDATE users SET username = $param_username, email = $param_email, street = $param_street, street_number = $param_street_number, postcode = $param_postcode, city = $param_city, profile_picture = $param_profile_picture, name = $param_name, forename = $param_forename WHERE id = $param_id";;
+
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "ssssissssss", $username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename, $param_id);
+                mysqli_stmt_bind_param($stmt, "ssssssssss", $param_username, $param_email, $param_street, $param_street_number, $param_postcode, $param_city, $param_profile_picture, $param_name, $param_forename, $param_id);
 
                     
                 // Attempt to execute the prepared statement
