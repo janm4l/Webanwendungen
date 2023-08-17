@@ -157,11 +157,11 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?>" readonly>
     <br>
     <br>
-    <input type="submit" value="Speichern" formaction="/components/editprofile/editprofile.php">
-</form>
+    <input type="submit" value="Speichern" formaction="/components/editprofile/editprofile.php" class="button">
+    </form>
 <br>
 <form>
-<button type="submit" formaction="/components/changepassword/changepassword.php">Passwort &auml;ndern</button>
+<button type="submit" formaction="/components/changepassword/changepassword.php" class="button">Passwort &auml;ndern</button>
 </form>
 
 </body>

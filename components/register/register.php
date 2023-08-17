@@ -84,26 +84,26 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     Email *
     <br>
     <input type="email" id="email" name="email" placeholder="E-Mail" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" required="required"/>
-    <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\" style=\"color: red\">$email_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
+    <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
     Nutzername *
     <br>
     <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if(isset($_POST['username'])) echo $_POST['username']; ?>" required="required">
-    <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\" style=\"color: red\">$username_msg</span><br>"; //Username-Fehler ?>
     <br>
+    <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\">$username_msg</span><br>"; //Username-Fehler ?>
     <br>
     Passwort *
     <br>
     <input type="password" id="password" name="password" placeholder="Passwort" required="required">
-    <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\" style=\"color: red\">$password_msg</span><br>"; //Password-Fehler ?>
     <br>
+    <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\"\>$password_msg</span><br>"; //Password-Fehler ?>
     <br>
     Passwort Bestätigen *
     <br>
     <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Bestätigen" required="required">
-    <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\" style=\"color: red\">$confirm_password_msg</span><br>"; //Confirm-Password-Fehler ?>
     <br>
+    <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Confirm-Password-Fehler ?>
     <br>
     Vorname
     <br>
@@ -135,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <input type="text" id="hausnummer" name="hausnummer" placeholder="Hausnummer">
     <br>
     <br>
-    <input type="submit" formaction="/components/register/register.php" value="Registrieren">
+    <input type="submit" formaction="/components/register/register.php" value="Registrieren" class="button">
 </form>
 
 </body>
