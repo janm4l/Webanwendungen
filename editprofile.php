@@ -27,7 +27,7 @@ $info = getUserInfo();
     <input type="text" id="street_number" name="street_number" placeholder="meine Hausnummer" value="<?php echo $info['street_number'] ?>">
     <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>">
     <input type="text" id="city" name="city" placeholder="meine Stadt" value="<?php echo $info['city'] ?>">
-    <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?>">
+    <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?> readonly">
 
     <input type="submit" value="Speichern" formaction="editprofile.php">
     </form>
