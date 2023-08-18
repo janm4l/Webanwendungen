@@ -1,0 +1,11 @@
+@media only screen and (max-width: 820px) {
+    /*
+    Hier CSS nur für iPad Air einfügen
+     */
+}
+
+@media only screen and (max-width: 390px) {
+    /*
+    Hier CSS nur für iPhone 12 Pro einfügen
+     */
+}
