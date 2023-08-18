@@ -112,7 +112,6 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 </head>
 <body>
 
-
 <form method="post" enctype="multipart/form-data">
 <div id="editprofileFormOuter">
 <h1 id="editprofileHeading">PROFIL BEARBEITEN</h1>
@@ -125,49 +124,51 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     E-Mail
     <br>
-    <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>" class="inputfield">
+    <script src="/main.js"></script>
+
+    <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>" onkeydown="limitKeypress(event, this.value, 50)" class="inputfield">
     <br>
     <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
     Vorname
     <br>
-    <input type="text" id="forename" name="forename" placeholder="Max" value="<?php echo $info['forename'] ?>" class="inputfield">
+    <input type="text" id="forename" name="forename" placeholder="Max" value="<?php echo $info['forename'] ?>" onkeydown="limitKeypress(event, this.value, 100)" class="inputfield">
     <br>
     <?php if (!empty($forename_msg)) echo "<span class=\"errormessage\">$forename_msg</span><br>"; //Vorname-Fehler ?>
     <br>
     Nachname
     <br>
-    <input type="text" id="name" name="name" placeholder="Mustermann" value="<?php echo $info['name'] ?>" class="inputfield">
+    <input type="text" id="name" name="name" placeholder="Mustermann" value="<?php echo $info['name'] ?>" onkeydown="limitKeypress(event, this.value, 100)" class="inputfield">
     <br>
     <?php if (!empty($name_msg)) echo "<span class=\"errormessage\">$name_msg</span><br>"; //Nachname-Fehler ?>
     <br>
     Nutzername
     <br>
-    <input type="text" id="username" name="username" placeholder="mein nutzername" value="<?php echo $info['username'] ?>" class="inputfield">
+    <input type="text" id="username" name="username" placeholder="mein nutzername" value="<?php echo $info['username'] ?>" onkeydown="limitKeypress(event, this.value, 50)" class="inputfield">
     <br>
     <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\">$username_msg</span><br>"; //Nutzername-Fehler ?>
     <br>
     Straße
     <br>
-    <input type="text" id="street" name="street" placeholder="meine Street" value="<?php echo $info['street'] ?>" class="inputfield">
+    <input type="text" id="street" name="street" placeholder="meine Street" value="<?php echo $info['street'] ?>" onkeydown="limitKeypress(event, this.value, 50)" class="inputfield">
     <br>
     <?php if (!empty($street_msg)) echo "<span class=\"errormessage\">$street_msg</span><br>"; //Straße-Fehler ?>
     <br>
     Hausnummer
     <br>
-    <input type="text" id="street_number" name="street_number" placeholder="meine Hausnummer" value="<?php echo $info['street_number'] ?>" class="inputfield">
+    <input type="text" id="street_number" name="street_number" placeholder="meine Hausnummer" value="<?php echo $info['street_number'] ?>" onkeydown="limitKeypress(event, this.value, 10)" class="inputfield">
     <br>
     <?php if (!empty($street_number_msg)) echo "<span class=\"errormessage\">$street_number_msg</span><br>"; //Hausnummer-Fehler ?>
     <br>
     Postleitzahl
     <br>
-    <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" class="inputfield">
+    <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" class="inputfield">
     <br>
     <?php if (isset($postcode_validated) && !$postcode_validated) echo "<span class=\"errormessage\">$postcode_msg</span><br>"; //Postleitzahl-Fehler ?>
     <br>
     Stadt
     <br>
-    <input type="text" id="city" name="city" placeholder="meine Stadt" value="<?php echo $info['city'] ?>" class="inputfield">
+    <input type="text" id="city" name="city" placeholder="meine Stadt" value="<?php echo $info['city'] ?>" onkeydown="limitKeypress(event, this.value, 50)" class="inputfield">
     <br>
     <?php if (!empty($city_msg)) echo "<span class=\"errormessage\">$city_msg</span><br>"; //Stadt-Fehler ?>
     <br>
@@ -184,5 +185,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 </form>
 </div>
 </div>
+
+
 </body>
 </html>
