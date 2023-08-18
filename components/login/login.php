@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <br>
                 <?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\">Es existiert kein Konto mit dieser E-Mail und diesem Passwort.</span>"; ?>
                 <br>
-                <input type="submit" formaction="/components/login/login.php" value="Login" class="button"> <a href="/components/register/register.php" class="button">Registrieren</a>
+                <input type="submit" formaction="/components/login/login.php" value="Login" class="button"> <a href="/components/register/register.php" class="button" style="text-decoration: none">Registrieren</a>
             </form>
             <br>
             <br>

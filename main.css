@@ -15,11 +15,32 @@ html {
 }
 
 body {
+    font-family: Arial, sans-serif;
     background-size: 300%;
     background-image: var(--gradient);
     animation: bg-animation 25s infinite;
 }
 
+
+.button {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+}
+
+/*
 .button {
     font: bold 11px Arial;
     text-decoration: none;
@@ -30,9 +51,9 @@ body {
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
-
-
 }
+*/
+
 
 .errormessage{
     color: #9f0202;
@@ -58,12 +79,11 @@ form{
     width: 20%;
 }
 
-
-
 [data-tip] {
     position:relative;
 
 }
+
 [data-tip]:before {
     content:'';
     /* hides the tooltip when not hovered */
@@ -80,6 +100,7 @@ form{
     width:0;
     height:0;
 }
+
 [data-tip]:after {
     display:none;
     content:attr(data-tip);
@@ -99,7 +120,7 @@ form{
     white-space:nowrap;
     word-wrap:normal;
 }
-[data-tip]:hover:before,
-[data-tip]:hover:after {
+
+[data-tip]:hover:before, [data-tip]:hover:after {
     display:block;
 }
