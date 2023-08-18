@@ -8,9 +8,9 @@ body {
     margin: 0;
     position: absolute;
     top: 5vh;
-    height: 1300px;
+    height: 1350px;
     width: 450px;
-    min-height: 1300px;
+    min-height: 1350px;
     min-width: 450px;
     background-image: var(--gradient-2);
     background-size: 300%;
@@ -23,7 +23,7 @@ body {
     display: inline-block;
     position: relative;
     margin-top: 0;
-    left: 27%;
+    left: 24%;
     top: 51%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -45,4 +45,18 @@ body {
     /*
     Hier CSS nur für iPhone 12 Pro einfügen
      */
+    #editprofileFormOuter {
+        margin: 0;
+        position: absolute;
+        top: 5vh;
+        height: 1350px;
+        width: 350px;
+        min-height: 1350px;
+        min-width: 350px;
+        background-image: var(--gradient-2);
+        background-size: 300%;
+        animation: bg-animation 25s infinite;
+        border-radius: 25px;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    }
 }
