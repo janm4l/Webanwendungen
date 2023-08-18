@@ -39,6 +39,8 @@ body {
 #loginFormInner {
     display: flex;
     position: relative;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     top: 45%;
     -ms-transform: translateY(-50%);
