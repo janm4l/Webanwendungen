@@ -28,9 +28,9 @@ $forename = '';
 // Wenn der Nutzer auf editprofile.php sein Profil aktualisiert, sollen die Änderungen hier verarbeitet werden.
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    $newprofilepicturepath = '';
+    $newprofilepicturepath = $info['profile_picture'];
     // if picture uploaded
-    if(isset($_FILES['profilepicture'])){
+    if(isset($_FILES['profilepicture']) && $_FILES['profilepicture']['size'] != 0){
         $result = storeProfilePicture();
         if($result[0]){
             $newprofilepicturepath = $result[1];
@@ -38,8 +38,6 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             $profile_picture_msg = $result[1];
         }
     }
-
-    echo $newprofilepicturepath;
 
     // E-Mail überprüfen
     $email_final = '';
