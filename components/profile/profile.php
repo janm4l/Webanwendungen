@@ -31,8 +31,8 @@ $info = getUserInfo();
             <form>
                 <button type="submit" formaction="/components/logout/logout.php" class="button">Logout</button>
             </form>
-            <!-- <?php echo "<h3 >Hallo " .  $info['username'] . ", du bist eingeloggt und hast die UserId " . getUserId() . "</h3>"; ?> -->
             <?php echo "<h3 style='text-align: center'>UserId " . getUserId() . "</h3>"; ?>
+            <br>
             <form>
                 <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200" style="border-radius: 100px">
                 <br>
