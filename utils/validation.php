@@ -103,7 +103,7 @@ function validatePassword($password){
         return false;     
     }
     if(!checkPasswordRequirements($password)){
-        $password_msg = "Das Passwort muss mindestens 8 Zeichen lang sein und aus Großuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen bestehen.";
+        $password_msg = "Das Passwort muss mindestens 8 Zeichen lang sein und aus Großbuchstaben, Kleinbuchstaben, Zahlen und Sonderzeichen bestehen.";
         return false;  
     }
 
@@ -113,17 +113,20 @@ function validatePassword($password){
 }
 
 function validateConfirmPassword($confirm_password){
-    global $confirm_password_msg;
-    if(empty($confirm_password)){
-        $confirm_password_msg = "Bitte gib dein Passwort erneut ein.";
-        return false;     
-    }
-    
     global $password_final;
-    if($password_final != $confirm_password){
-        $confirm_password_msg = "Die eingegebenen Passwörter stimmen nicht überein.";
-        return false;
+    if($password_final != ''){
+        global $confirm_password_msg;
+        if(empty($confirm_password)){
+            $confirm_password_msg = "Bitte gib dein Passwort erneut ein.";
+            return false;     
+        }
+        
+        if($password_final != $confirm_password){
+            $confirm_password_msg = "Die eingegebenen Passwörter stimmen nicht überein.";
+            return false;
+        }
     }
+   
 
     $confirm_password_final = $confirm_password;
     return true;

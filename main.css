@@ -70,7 +70,7 @@ body {
 
 .errormessage{
     color: #9f0202;
-    font-weight: bold;
+    font-weight: 300;
     display: block;
 }
 
