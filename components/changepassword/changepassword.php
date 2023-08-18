@@ -4,10 +4,6 @@ include '../../utils/db.php';
 include '../../utils/user.php';
 include '../../utils/validation.php';
 
-$old_password_msg = '';
-$password_msg = '';
-$confirm_password_msg = '';
-
 if(!isLoggedIn()){
     header("location: /components/login/login.php");
     die();
@@ -59,30 +55,76 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <h1 id="changepasswordHeading">PASSWORT ÄNDERN</h1>
 <div id="changepasswordFormInner">
 <form method="post">
-    <?php if (isset($result) && $result) echo "<h1 class=\"successmessage\">Dein Passwort wurde erfolgreich geändert.</h1><br>"; ?>
+    <h1 id="success" class="successmessage" style="visibility: hidden"></h1>
     Altes Passwort
     <br>
     <input type="password" id="old_password" name="old_password" placeholder="Altes Passwort" value="<?php if (!empty($oldpassword)) echo $oldpassword ?>" class="inputfield">
-    <br>
-    <?php if (isset($old_password_validated) && !$old_password_validated) echo "<span class=\"errormessage\">$old_password_msg</span><br>"; //Password-Fehler ?>
+    <span id="old_password_msg" class="errormessage"></span>
     <br>
     <br>
     Neues Passwort
     <br>
     <input type="password" id="password" name="password" placeholder="Neues Passwort" class="inputfield">
-    <br>
-    <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\">$password_msg</span><br>"; //Passwort-Fehler ?>
+    <span id="password_msg" class="errormessage"></span>
     <br>
     <br>
     Neues Passwort best&auml;tigen
     <br>
     <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort bestätigen" class="inputfield">
+    <span id="confirm_password_msg" class="errormessage"></span>
     <br>
-    <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Passwort-Fehler ?>
     <br>
-    <br>
-    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern" class="button">
+    <input id="submitButton" type="button" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern" class="button">
     <a href="/components/profile/profile.php" class="button" style="text-decoration: none; text-align: center">Profil</a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var submitBtn = document.getElementById("submitButton");
+            const successElement = document.getElementById("success");
+            submitBtn.addEventListener("click", function () {
+                var old_password = document.getElementById("old_password").value;
+                var password = document.getElementById("password").value;
+                var confirm_password = document.getElementById("confirm_password").value;
+
+                if (old_password == '' || password == '' || confirm_password == '') {
+                    alert("Bitte fülle alle Felder aus.");
+                    return;
+                }
+
+                if(password != confirm_password){
+                    alert("Die neuen Passwörter stimmen nicht überein.");
+                    return;
+                }
+
+                var data = {
+                    old_password: old_password,
+                    password: password,
+                    confirm_password: confirm_password
+                };
+
+                fetch("/ajax/changepassword.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    document.getElementById("old_password_msg").innerHTML = result['old_password_msg'];
+                    document.getElementById("password_msg").innerHTML = result['password_msg'];
+                    document.getElementById("confirm_password_msg").innerHTML = result['confirm_password_msg'];
+                    if(result['success']){
+                        successElement.innerHTML = "Dein Passwort wurde erfolgreich geändert.";
+                        successElement.style.visibility = "visible";
+                    }
+                })
+                .catch(error => {
+                    console.log("Fehler bei der Anfrage:", error + error.stack);
+                    alert("Es ist ein Fehler beim Senden der Daten aufgetreten.");
+                });
+            });
+        });
+    </script>
 </form>
 <br>
 
