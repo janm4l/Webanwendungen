@@ -106,6 +106,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <html>
 <title>Profil Bearbeiten</title>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/components/editprofile/editprofile.css">
     <link rel="stylesheet" href="/main.css">
 </head>
