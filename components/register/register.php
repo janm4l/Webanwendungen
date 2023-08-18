@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <body>
 <div id="registerFormOuter">
 <h1 id="registerHeading">Register</h1>
-<div id="registerFormInner">
+<div id="registerFormInner" class="grid-container">
 <form method="post">
     Email *
     <br>
