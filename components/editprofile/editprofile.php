@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 <form method="post" enctype="multipart/form-data">
 <div id="editprofileFormOuter">
-<h1 id="editprofileHeading">Profil bearbeiten</h1>
+<h1 id="editprofileHeading">PROFIL BEARBEITEN</h1>
 <div id="editprofileFormInner">
     <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200">
     <br>

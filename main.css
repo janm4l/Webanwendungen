@@ -20,6 +20,19 @@
     #ffc75f,
     #f9f871
     );
+
+    --gradient-2: linear-gradient(
+    45deg,
+    #6ac8f3,
+    #4bbff3,
+    #00a4ff
+    );
+}
+
+@keyframes bg-animation {
+    0% {background-position: left}
+    50% {background-position: right}
+    100% {background-position: left}
 }
 
 html {
@@ -104,6 +117,7 @@ input {
 form{
     width: 200px;
     min-width: 200px;
+    max-width: 200px;
 }
 
 [data-tip] {
