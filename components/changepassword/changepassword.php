@@ -54,39 +54,33 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-
-<div id="changepasswordFormOuter">
-<h1 id="changepasswordHeading">PASSWORT ÄNDERN</h1>
-<div id="changepasswordFormInner">
-<form method="post">
-    <?php if (isset($result) && $result) echo "<h1 class=\"successmessage\">Dein Passwort wurde erfolgreich geändert.</h1><br>"; ?>
-    Altes Passwort
-    <br>
-    <input type="password" id="old_password" name="old_password" placeholder="Altes Passwort" value="<?php if (!empty($oldpassword)) echo $oldpassword ?>" class="inputfield">
-    <br>
-    <?php if (isset($old_password_validated) && !$old_password_validated) echo "<span class=\"errormessage\">$old_password_msg</span><br>"; //Password-Fehler ?>
-    <br>
-    <br>
-    Neues Passwort
-    <br>
-    <input type="password" id="password" name="password" placeholder="Neues Passwort" class="inputfield">
-    <br>
-    <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\">$password_msg</span><br>"; //Passwort-Fehler ?>
-    <br>
-    <br>
-    Neues Passwort best&auml;tigen
-    <br>
-    <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort bestätigen" class="inputfield">
-    <br>
-    <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Passwort-Fehler ?>
-    <br>
-    <br>
-    <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern" class="button">
-    <a href="/components/profile/profile.php" class="button" style="text-decoration: none; text-align: center">Profil</a>
-</form>
-<br>
-
-</div>
-</div>
+    <div id="changepasswordFormOuter">
+    <h1 id="changepasswordHeading">PASSWORT ÄNDERN</h1>
+        <div id="changepasswordFormInner">
+            <form method="post">
+                <?php if (isset($result) && $result) echo "<h1 class=\"successmessage\">Dein Passwort wurde erfolgreich geändert.</h1><br>"; ?>
+                Altes Passwort
+                <br>
+                <input type="password" id="old_password" name="old_password" placeholder="Altes Passwort" value="<?php if (!empty($oldpassword)) echo $oldpassword ?>" class="inputfield">
+                <br>
+                <?php if (isset($old_password_validated) && !$old_password_validated) echo "<span class=\"errormessage\">$old_password_msg</span><br>"; //Password-Fehler ?>
+                <br>
+                Neues Passwort
+                <br>
+                <input type="password" id="password" name="password" placeholder="Neues Passwort" class="inputfield">
+                <br>
+                <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\">$password_msg</span><br>"; //Passwort-Fehler ?>
+                <br>
+                Neues Passwort best&auml;tigen
+                <br>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort bestätigen" class="inputfield">
+                <br>
+                <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Passwort-Fehler ?>
+                <br>
+                <input type="submit" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern" class="button">
+                <a href="/components/profile/profile.php" class="button" style="text-decoration: none; text-align: center">Profil</a>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
