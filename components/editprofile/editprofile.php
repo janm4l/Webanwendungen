@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     <script src="/main.js"></script>
 
-    <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>" onkeydown="limitKeypress(event, this.value, 50)" class="inputfield">
+    <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>" onkeydown="limitKeypress(event, this.value, 50); check_syntax(event, this.value, '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$');" class="inputfield">
     <br>
     <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //E-Mail-Fehler ?>
     <br>
