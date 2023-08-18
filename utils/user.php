@@ -97,6 +97,40 @@
         
     }
 
+    /*
+        Zur Verwendung dieser Methode bitte vorher filestorge.php importieren
+    */
+    function deleteProfilePicture(){
+        if(isLoggedIn()){
+            $info = getUserInfo();
+            $filename = $info['profile_picture'];
+            // Prepare a select statement
+            $sql = "UPDATE users SET profile_picture = '' WHERE id = ?";
+            global $conn;
+
+            if($stmt = mysqli_prepare($conn, $sql)){
+                $param_id = getUserId();
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "s", $param_id);
+
+                    
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    deletePicture($filename);
+                    return true;
+                } else {
+                    echo "Es ist ein Fehler aufgetreten.";
+                    return false;
+                }
+                // Close statement
+                mysqli_stmt_close($stmt);
+                
+            }
+        }else{
+            return false;
+        }
+    }
+
     function updateInfo($username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename){
         if(isLoggedIn()){
             // Prepare a select statement
@@ -115,8 +149,6 @@
                 $param_name = (empty($name) ? null : $name);
                 $param_forename = (empty($forename) ? null : $forename);
 
-                echo $sql = "UPDATE users SET username = $param_username, email = $param_email, street = $param_street, street_number = $param_street_number, postcode = $param_postcode, city = $param_city, profile_picture = $param_profile_picture, name = $param_name, forename = $param_forename WHERE id = $param_id";;
-
                 // Bind variables to the prepared statement as parameters
                 mysqli_stmt_bind_param($stmt, "ssssssssss", $param_username, $param_email, $param_street, $param_street_number, $param_postcode, $param_city, $param_profile_picture, $param_name, $param_forename, $param_id);
 
@@ -125,7 +157,7 @@
                 if(mysqli_stmt_execute($stmt)){
                     return true;
                 } else {
-                    echo "Es ist ein fehler aufgetreten.";
+                    echo "Es ist ein Fehler aufgetreten.";
                     return false;
                 }
                 // Close statement
@@ -135,14 +167,6 @@
         }else{
             return false;
         }
-    }
-
-    function changePassword(){
-
-        /*
-            TODO
-        */
-        
     }
 
     function getProfilePicturePath(){
@@ -206,7 +230,7 @@
                         return $info;
                     }
                 } else {
-                    echo "Es ist ein fehler aufgetreten.";
+                    echo "Es ist ein Fehler aufgetreten.";
                     return null;
                 }
                 // Close statement

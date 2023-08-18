@@ -1,5 +1,6 @@
 <?php
 define ('SITE_ROOT', realpath(dirname(__FILE__)));
+$target_dir = "/content/profilepics/";
 
 function generateRandomString(int $n): string {
     $characters="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -13,7 +14,7 @@ function generateRandomString(int $n): string {
 
 function storeProfilePicture(){
     $randomString = generateRandomString(10);
-    $target_dir = "/content/profilepics/";
+    global $target_dir;
     $target_file = $target_dir . basename($_FILES["profilepicture"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -41,6 +42,13 @@ function storeProfilePicture(){
       } else {
         return [false, 'Es ist ein Problem beim Upload aufgetreten.'];
       }
+}
+
+function deletePicture($filename){
+    global $target_dir;
+    if(!empty($filename)){ //Hat der aktuelle Nutzer überhaupt ein Profilbild?
+        unlink(SITE_ROOT. $target_dir . $filename);
+    }
 }
 
 ?>

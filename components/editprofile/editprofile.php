@@ -114,6 +114,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         <div id="editprofileFormInner">
             <form method="post" enctype="multipart/form-data">
                 <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200" style="border-radius: 100px">
+                <?php if (!empty($info['profile_picture'])) echo "<br><a href=\"#\" id=\"deletePictureButton\" class=\"button\" style=\"text-decoration: none; text-align: center\">Profilbild löschen</a>" ?>
                 <br>
                 <input type="file" id="profilepicture" name="profilepicture">
                 <br>
@@ -170,5 +171,37 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             </form>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var deletePictureButton = document.getElementById("deletePictureButton");
+            deletePictureButton.addEventListener("click", function () {
+
+                var data = {
+                    delete: true
+                };
+
+                fetch("/ajax/deleteprofilepicture.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if(result['success']){
+                        location.reload();
+                    }else{
+                        alert("Dein Profilbild konnte nicht gelöscht werden.");
+                    }
+                })
+                .catch(error => {
+                    console.log("Fehler bei der Anfrage:", error + error.stack);
+                    console.log(response);
+                    alert("Es ist ein Fehler beim Senden der Daten aufgetreten.");
+                });
+            });
+        });
+    </script>
 </body>
 </html>
