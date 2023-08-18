@@ -92,16 +92,14 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <br>
                 <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($username)) echo "<span class=\"errormessage\">Bitte gib einen Nutzernamen ein.</span><br>"; //Username-Fehler ?>
                 <br>
-                <br>
                 Passwort
                 <br>
                 <input type="password" id="password" name="password" placeholder="Passwort" class="inputfield">
                 <br>
                 <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($password)) echo "<span class=\"errormessage\">Bitte gib ein Passwort ein.</span><br>"; //Password-Fehler ?>
-                <br>
                 <?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\">Es existiert kein Konto mit dieser E-Mail und diesem Passwort.</span>"; ?>
-                <br>
-                <input type="submit" formaction="/components/login/login.php" value="Login" class="button"> <a href="/components/register/register.php" class="button" style="text-decoration: none">Registrieren</a>
+                <input type="submit" formaction="/components/login/login.php" value="Login" class="button">
+                <a href="/components/register/register.php" class="button" style="text-decoration: none; text-align: center">Registrieren</a>
             </form>
             <br>
             <br>

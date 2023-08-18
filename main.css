@@ -50,6 +50,7 @@ body {
     list-style: none;
     padding: 6px 16px;
     position: relative;
+    width: 200px;
 }
 
 /*
@@ -88,10 +89,6 @@ input {
 .inputfield {
     border-radius:10px;
     border: 1px solid #eee;
-    transition: .3s border-color;
-}
-.inputfield:hover {
-    border: 1px solid #aaa;
 }
 
 /*
