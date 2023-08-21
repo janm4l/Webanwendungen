@@ -84,30 +84,6 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Bestätigen" required="required" class="inputfield">
                 <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Confirm-Password-Fehler ?>
                 <br>
-                Vorname
-                <br>
-                <input type="text" id="vorname" name="vorname" placeholder="Vorname" class="inputfield">
-                <br>
-                Nachname
-                <br>
-                <input type="text" id="nachname" name="nachname" placeholder="Nachname" class="inputfield">
-                <br>
-                Postleitzahl
-                <br>
-                <input type="text" id="postleitzahl" name="postleitzahl" placeholder="Postleitzahl" class="inputfield">
-                <br>
-                Ort
-                <br>
-                <input type="text" id="ort" name="ort" placeholder="Ort" class="inputfield">
-                <br>
-                Straße
-                <br>
-                <input type="text" id="straße" name="straße" placeholder="Straße" class="inputfield">
-                <br>
-                Hausnummer
-                <br>
-                <input type="text" id="hausnummer" name="hausnummer" placeholder="Hausnummer" class="inputfield">
-                <br>
                 <input type="submit" formaction="/components/register/register.php" value="Registrieren" class="button">
             </form>
         </div>

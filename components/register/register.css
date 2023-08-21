@@ -7,12 +7,12 @@ body {
 #registerFormOuter {
     margin: 0;
     position: absolute;
-    top: 5vh;
+    top: 25vh;
     justify-content: center;
     align-items: center;
-    height: 1100px;
+    height: 600px;
     width: 450px;
-    min-height: 1100px;
+    min-height: 600px;
     min-width: 450px;
     background-image: var(--gradient-2);
     background-size: 300%;
