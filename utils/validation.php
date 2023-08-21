@@ -7,6 +7,11 @@ function validateEmail($email){
         return false;
     }
 
+    if (strlen($email) > 100){
+        $email_msg = "Die E-Mail darf maximal 100 Zeichen lang sein.";
+        return false;
+    } 
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $email_msg = "Die eingegebene E-Mail ist ungültig.";
         return false;
@@ -54,6 +59,11 @@ function validateUsername($username){
     global $username_msg;
     if(empty($username)){
         $username_msg = "Bitte gib einen gültigen Benutzernamen ein.";
+        return false;
+    }
+
+    if (strlen($username) > 100){
+        $username_msg = "Der Nutzername darf maximal 100 Zeichen lang sein.";
         return false;
     } 
     
