@@ -6,6 +6,7 @@ let postcode_valid = true;
 let username_valid = true;
 let check_password_valid = false;
 let password_valid = false;
+let passwords_fit = false;
 function set_email_valid(bool){
     email_valid = bool;
 }
@@ -85,6 +86,7 @@ function comparepasswords(password, message){
     let error = document.getElementById("password_compare_error");
     let checkpw = document.getElementById("password").value;
     if(password.localeCompare(checkpw) === 0){
+        passwords_fit = true;
         error.textContent = "";
         return true;
     }
@@ -119,7 +121,7 @@ function check_password_regex(event, id, message){
 
 function register_submit_check(message){
     let error = document.getElementById("register_form_error");
-    if(email_valid === true && username_valid === true && password_valid === true && check_password_valid === true){
+    if(email_valid === true && username_valid === true && password_valid === true && check_password_valid === true && passwords_fit === true){
         error.textContent = "";
         return true;
     }
@@ -132,7 +134,7 @@ function register_submit_check(message){
 
 function change_password_submit_check(message){
     let error = document.getElementById("change_passwords_form_error");
-    if(password_valid === true && check_password_valid === true ){
+    if(password_valid === true && check_password_valid === true && passwords_fit === true){
         error.textContent = "";
         return true;
     }
