@@ -130,6 +130,19 @@ function register_submit_check(message){
     }
 }
 
+function change_password_submit_check(message){
+    let error = document.getElementById("change_passwords_form_error");
+    if(password_valid === true && check_password_valid === true ){
+        error.textContent = "";
+        return true;
+    }
+    else {
+        error.textContent = message;
+        error.style.color = "red";
+        return false;
+    }
+}
+
 function email_check(event, regEx, id, message){
     if(errorRegEx(event, regEx, id, message)){
         errorRegEx(event, regEx, id, message);

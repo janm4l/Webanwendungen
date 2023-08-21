@@ -50,11 +50,13 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
+ <script src="/main.js"></script>
 
 <div id="changepasswordFormOuter">
 <h1 id="changepasswordHeading">PASSWORT ÄNDERN</h1>
 <div id="changepasswordFormInner">
 <form method="post">
+<span id="change_passwords_form_error"></span>
     <h3 id="success" class="successmessage" style="visibility: hidden"></h3>
     Altes Passwort
     <br>
@@ -64,14 +66,17 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     Neues Passwort
     <br>
-    <input type="password" id="password" name="password" placeholder="Neues Passwort" class="inputfield">
+    <input type="password" id="password" name="password" placeholder="Neues Passwort" onblur="password_check(event, 'password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
     <span id="password_msg" class="errormessage"></span>
+    <span id="error_password"></span>
     <br>
     <br>
     Neues Passwort best&auml;tigen
     <br>
-    <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort bestätigen" class="inputfield">
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort bestätigen" onblur="comparepasswords(this.value, 'Die Passwörter stimmen nicht überein'); password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
     <span id="confirm_password_msg" class="errormessage"></span>
+    <span id="error_confirm_password"></span>
+      <span id="password_compare_error"></span>
     <br>
     <br>
     <input id="submitButton" type="button" formaction="/components/changepassword/changepassword.php" value="Passwort &auml;ndern" class="button">
@@ -87,6 +92,10 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 var old_password = field_old_password.value;
                 var password = field_password.value;
                 var confirm_password = field_confirm_password.value;
+
+                if (!change_password_submit_check('Bitte fülle das Formular richtig aus')){
+                    return;
+                }
 
                 if (old_password == '' || password == '' || confirm_password == '') {
                     alert("Bitte fülle alle Felder aus.");
