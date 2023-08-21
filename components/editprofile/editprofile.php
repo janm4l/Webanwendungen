@@ -123,7 +123,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 E-Mail
                 <br>
                 <script src="/main.js"></script>
-                <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>" onkeydown="limitKeypress(event, this.value, 50);" onblur="email_check(event, this.value, '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$', 'email', 'Bitte gib eine valide E-mail ein');" class="inputfield">
+                <input type="email" id="email" name="email" placeholder="Meine E-Mail" value="<?php echo $info['email'] ?>" onkeydown="limitKeypress(event, this.value, 50);" onblur="email_check(event, '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$', 'email', 'Bitte gib eine valide E-mail ein');" class="inputfield">
                 <span id="error_email"></span>
                 <br>
                 <?php if (isset($email_validated) && !$email_validated) echo "<span class=\"errormessage\">$email_msg</span><br>"; //E-Mail-Fehler ?>
@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <?php if (!empty($name_msg)) echo "<span class=\"errormessage\">$name_msg</span><br>"; //Nachname-Fehler ?>
                 Nutzername
                 <br>
-                <input type="text" id="username" name="username" placeholder="mein nutzername" value="<?php echo $info['username'] ?>" onkeydown="limitKeypress(event, this.value, 50)" onblur="email_check(event, this.value, '^([0-9]|[a-z]|\_|[A-Z]){1,50}$', 'username', 'Bitte gib einen validen Nutzernamen ein');" class="inputfield">
+                <input type="text" id="username" name="username" placeholder="mein nutzername" value="<?php echo $info['username'] ?>" onkeydown="limitKeypress(event, this.value, 50)" onblur="email_check(event, '^([0-9]|[a-z]|\_|[A-Z]){1,50}$', 'username', 'Bitte gib einen validen Nutzernamen ein');" class="inputfield">
                 <span id="error_username"></span>
                 <br>
                 <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\">$username_msg</span><br>"; //Nutzername-Fehler ?>
@@ -150,13 +150,13 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <?php if (!empty($street_msg)) echo "<span class=\"errormessage\">$street_msg</span><br>"; //Straße-Fehler ?>
                 Hausnummer
                 <br>
-                <input type="text" id="street_number" name="street_number" placeholder="meine Hausnummer" value="<?php echo $info['street_number'] ?>" onkeydown="limitKeypress(event, this.value, 10)" onblur="street_number_check(event, this.value, '^[0-9]+[a-h]?\-?[b-i]?$', 'street_number', 'Bitte gib eine valide Hausnummer ein');" class="inputfield">
+                <input type="text" id="street_number" name="street_number" placeholder="meine Hausnummer" value="<?php echo $info['street_number'] ?>" onkeydown="limitKeypress(event, this.value, 10)" onblur="street_number_check(event, '^[0-9]+[a-h]?\-?[b-i]?$', 'street_number', 'Bitte gib eine valide Hausnummer ein');" class="inputfield">
                 <span id="error_street_number"></span>
                 <br>
                 <?php if (!empty($street_number_msg)) echo "<span class=\"errormessage\">$street_number_msg</span><br>"; //Hausnummer-Fehler ?>
                 Postleitzahl
                 <br>
-                <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" onblur="postcode_check(event, this.value, '^[0-9]{5}$', 'postcode', 'Bitte gib eine valide Postleitzahl ein');" class="inputfield">
+                <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" onblur="postcode_check(event, '^[0-9]{5}$', 'postcode', 'Bitte gib eine valide Postleitzahl ein');" class="inputfield">
                 <span id="error_postcode"></span>
                 <br>
                 <?php if (isset($postcode_validated) && !$postcode_validated) echo "<span class=\"errormessage\">$postcode_msg</span><br>"; //Postleitzahl-Fehler ?>
