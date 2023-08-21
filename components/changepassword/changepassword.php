@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 <h1 id="changepasswordHeading">PASSWORT ÄNDERN</h1>
 <div id="changepasswordFormInner">
 <form method="post">
-    <h1 id="success" class="successmessage" style="visibility: hidden"></h1>
+    <h3 id="success" class="successmessage" style="visibility: hidden"></h3>
     Altes Passwort
     <br>
     <input type="password" id="old_password" name="old_password" placeholder="Altes Passwort" value="<?php if (!empty($oldpassword)) echo $oldpassword ?>" class="inputfield">
@@ -81,9 +81,12 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             var submitBtn = document.getElementById("submitButton");
             const successElement = document.getElementById("success");
             submitBtn.addEventListener("click", function () {
-                var old_password = document.getElementById("old_password").value;
-                var password = document.getElementById("password").value;
-                var confirm_password = document.getElementById("confirm_password").value;
+                var field_old_password = document.getElementById("old_password");
+                var field_password = document.getElementById("password");
+                var field_confirm_password = document.getElementById("confirm_password");
+                var old_password = field_old_password.value;
+                var password = field_password.value;
+                var confirm_password = field_confirm_password.value;
 
                 if (old_password == '' || password == '' || confirm_password == '') {
                     alert("Bitte fülle alle Felder aus.");
@@ -116,6 +119,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                     if(result['success']){
                         successElement.innerHTML = "Dein Passwort wurde erfolgreich geändert.";
                         successElement.style.visibility = "visible";
+                        field_old_password.value = "";
+                        field_password.value = "";
+                        field_confirm_password.value = "";
                     }
                 })
                 .catch(error => {
