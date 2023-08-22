@@ -172,8 +172,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <span id="editprofile_form_error"></span>
                 <input type="submit" value="Speichern" formaction="/components/editprofile/editprofile.php" class="button">
             </form>
+            <br>
             <form>
-                <button type="submit" formaction="/components/changepassword/changepassword.php" class="button">Passwort &auml;ndern</button>
+                <button type="submit" formaction="/components/profile/profile.php" class="button">Abbrechen</button>
             </form>
         </div>
     </div>

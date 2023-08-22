@@ -63,14 +63,14 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <span id="old_password_msg" class="errormessage"></span>
     <br>
     <br>
-    Neues Passwort
+    <a href="#" class="tooltip" style="color: black" data-tip="Anforderungen: Mindestens 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen">Neues Passwort</a>
     <br>
     <input type="password" id="password" name="password" placeholder="Neues Passwort" onblur="password_check(event, 'password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
     <span id="password_msg" class="errormessage"></span>
     <span id="error_password"></span>
     <br>
     <br>
-    Neues Passwort best&auml;tigen
+    <a href="#" class="tooltip" style="color: black" data-tip="Anforderungen: Mindestens 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen">Neues Passwort Best&auml;tigen</a>
     <br>
     <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort best&auml;tigen" onblur="comparepasswords(this.value, 'Die Passw&ouml;rter stimmen nicht &uuml;berein'); check_password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
     <span id="confirm_password_msg" class="errormessage"></span>

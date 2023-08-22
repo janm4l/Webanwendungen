@@ -31,16 +31,13 @@ if(!isLoggedIn()){
         <h1 id="profileHeading">PROFIL</h1>
         <div id="profileFormInner">
             <form>
-                <button type="submit" formaction="/components/logout/logout.php" class="button">Logout</button>
-            </form>
-            <?php echo "<h3 style='text-align: center'>UserId " . getUserId() . "</h3>"; ?>
-            <br>
-            <form>
                 <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200" style="border-radius: 100px">
                 <br>
                 <br>
                 <form>
                     <button type="submit" formaction="/components/editprofile/editprofile.php" class="button">Bearbeiten</button>
+                    <br><br>
+                    <button type="submit" formaction="/components/changepassword/changepassword.php" class="button">Passwort &auml;ndern</button>
                 </form>
                 <br>
                 E-Mail
@@ -78,6 +75,10 @@ if(!isLoggedIn()){
                 Account erstellt am:
                 <br>
                 <input type="text" id="accountErstelltAm" name="accountErstelltAm" placeholder="01.01.2000" readonly="readonly" value="<?php echo $info['create_datetime'] ?>" readonly class="inputfield">
+            </form>
+            <br>
+            <form>
+                <button type="submit" formaction="/components/logout/logout.php" class="button">Logout</button>
             </form>
         </div>
     </div>
