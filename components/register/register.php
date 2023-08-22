@@ -76,13 +76,13 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <?php if (isset($username_validated) && !$username_validated) echo "<span class=\"errormessage\">$username_msg</span><br>"; //Username-Fehler ?>
                 <span id="error_username"></span>
                 <br>
-                <a href="#" class="tooltip" style="color: black" data-tip="Anforderungen: Mindestens 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen">Passwort *</a>
+                <a href="#" class="tooltip" tabindex="-1" style="color: black" data-tip="Anforderungen: Mindestens 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen">Passwort *</a>
                 <br>
                 <input type="password" id="password" name="password" placeholder="Passwort" required="required" onblur="password_check(event, 'password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
                 <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\"\>$password_msg</span><br>"; //Password-Fehler ?>
                 <span id="error_password"></span>
                 <br>
-                <a href="#" class="tooltip" style="color: black" data-tip="Anforderungen: Mindestens 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen">Passwort Best&auml;tigen *</a>
+                <a href="#" class="tooltip" tabindex="-1" style="color: black" data-tip="Anforderungen: Mindestens 1 Großbuchstabe, 1 Kleinbuchstabe, 1 Zahl, 1 Sonderzeichen">Passwort Best&auml;tigen *</a>
                 <br>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Best&auml;tigen" required="required" class="inputfield" onblur="comparepasswords(this.value, 'Die Passw&ouml;rter stimmen nicht &uuml;berein'); check_password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')">
                 <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Confirm-Password-Fehler ?>
