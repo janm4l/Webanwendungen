@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     //Altes Passwort
     $old_password_final = '';
     $old_password_validated = (password_verify(trim($_POST['old_password']), $info['password_hashed']) ? true : false);
-    $old_password_msg = ($old_password_validated ? '' : 'Dieses Passwort stimmt nicht mit deinem akutellen Password überein.');
+    $old_password_msg = ($old_password_validated ? '' : 'Dieses Passwort stimmt nicht mit deinem akutellen Password &uuml;berein.');
 
     // Validate password
     $password_final = '';
@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
 <!DOCTYPE html>
 <html>
-<title>Login</title>
+<title>Passwort &auml;ndern</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/components/changepassword/changepassword.css">
@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
  <script src="/main.js"></script>
 
 <div id="changepasswordFormOuter">
-<h1 id="changepasswordHeading">PASSWORT ÄNDERN</h1>
+<h1 id="changepasswordHeading">PASSWORT &Auml;NDERN</h1>
 <div id="changepasswordFormInner">
 <form method="post">
 <span id="change_passwords_form_error"></span>
@@ -72,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <br>
     Neues Passwort best&auml;tigen
     <br>
-    <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort bestätigen" onblur="comparepasswords(this.value, 'Die Passwörter stimmen nicht überein'); check_password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Neues Passwort best&auml;tigen" onblur="comparepasswords(this.value, 'Die Passw&ouml;rter stimmen nicht &uuml;berein'); check_password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')" class="inputfield">
     <span id="confirm_password_msg" class="errormessage"></span>
     <span id="error_confirm_password"></span>
     <span id="password_compare_error"></span>
@@ -93,17 +93,17 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 var password = field_password.value;
                 var confirm_password = field_confirm_password.value;
 
-                if (!change_password_submit_check('Bitte fülle das Formular richtig aus')){
+                if (!change_password_submit_check('Bitte f&uuml;lle das Formular richtig aus')){
                     return;
                 }
 
                 if (old_password == '' || password == '' || confirm_password == '') {
-                    alert("Bitte fülle alle Felder aus.");
+                    alert("Bitte f&uuml;lle alle Felder aus.");
                     return;
                 }
 
                 if(password != confirm_password){
-                    alert("Die neuen Passwörter stimmen nicht überein.");
+                    alert("Die neuen Passw&ouml;rter stimmen nicht &uuml;berein.");
                     return;
                 }
 

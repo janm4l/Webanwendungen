@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <div id="registerFormOuter">
         <h1 id="registerHeading">REGISTRIEREN</h1>
         <div id="registerFormInner">
-            <form method="post" onsubmit="return register_submit_check('Bitte fülle das Formular richtig aus')">
+            <form method="post" onsubmit="return register_submit_check('Bitte f&uuml;lle das Formular richtig aus')">
                 Email *
                 <br>
                 <input type="email" id="email" name="email" placeholder="E-Mail" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" required="required" class="inputfield" onkeydown="limitKeypress(event, this.value, 50);" onblur="email_check(event, '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$', 'email', 'Bitte gib eine valide E-mail ein')">
@@ -82,9 +82,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <?php if (isset($password_validated) && !$password_validated) echo "<span class=\"errormessage\"\>$password_msg</span><br>"; //Password-Fehler ?>
                 <span id="error_password"></span>
                 <br>
-                Passwort Bestätigen *
+                Passwort Best&auml;tigen *
                 <br>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Bestätigen" required="required" class="inputfield" onblur="comparepasswords(this.value, 'Die Passwörter stimmen nicht überein'); check_password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')">
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Passwort Best&auml;tigen" required="required" class="inputfield" onblur="comparepasswords(this.value, 'Die Passw&ouml;rter stimmen nicht &uuml;berein'); check_password_check(event, 'confirm_password', 'Das Passwort entspricht nicht den Anforderungen')">
                 <?php if (isset($confirm_password_validated) && !$confirm_password_validated) echo "<span class=\"errormessage\">$confirm_password_msg</span><br>"; //Confirm-Password-Fehler ?>
                 <span id="password_compare_error"></span>
                 <br>

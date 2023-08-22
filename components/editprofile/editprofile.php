@@ -112,9 +112,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <div id="editprofileFormOuter">
         <h1 id="editprofileHeading">PROFIL BEARBEITEN</h1>
         <div id="editprofileFormInner">
-            <form method="post" enctype="multipart/form-data" id="editprofile_form" onsubmit="return profile_submit_check('Bitte fülle das Formular richtig aus')">
+            <form method="post" enctype="multipart/form-data" id="editprofile_form" onsubmit="return profile_submit_check('Bitte f&uuml;lle das Formular richtig aus')">
                 <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200" style="border-radius: 100px">
-                <?php if (!empty($info['profile_picture'])) echo "<br><a href=\"#\" id=\"deletePictureButton\" class=\"button\" style=\"text-decoration: none; text-align: center\">Profilbild löschen</a>" ?>
+                <?php if (!empty($info['profile_picture'])) echo "<br><a href=\"#\" id=\"deletePictureButton\" class=\"button\" style=\"text-decoration: none; text-align: center\">Profilbild l&ouml;schen</a>" ?>
                 <br>
                 <input type="file" id="profilepicture" name="profilepicture">
                 <br>
@@ -197,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                     if(result['success']){
                         location.reload();
                     }else{
-                        alert("Dein Profilbild konnte nicht gelöscht werden.");
+                        alert("Dein Profilbild konnte nicht gel&ouml;scht werden.");
                     }
                 })
                 .catch(error => {
