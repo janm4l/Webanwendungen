@@ -88,13 +88,13 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             <form method="post">
                 Nutzername
                 <br>
-                <input type="text" id="username" name="username" placeholder="Nutzername" value="<?php if (!empty($username)) echo $username; ?>" class="inputfield">
+                <input type="text" id="username" name="username" required="required" placeholder="Nutzername" value="<?php if (!empty($username)) echo $username; ?>" class="inputfield">
                 <br>
                 <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($username)) echo "<span class=\"errormessage\">Bitte gib einen Nutzernamen ein.</span><br>"; //Username-Fehler ?>
                 <br>
                 Passwort
                 <br>
-                <input type="password" id="password" name="password" placeholder="Passwort" class="inputfield">
+                <input type="password" id="password" name="password" required="required" placeholder="Passwort" class="inputfield">
                 <br>
                 <?php if ($_SERVER["REQUEST_METHOD"] === 'POST' && empty($password)) echo "<span class=\"errormessage\">Bitte gib ein Passwort ein.</span><br>"; //Password-Fehler ?>
                 <?php if(!$success && !(empty($username) || empty($password))) echo "<span class=\"errormessage\">Es existiert kein Konto mit dieser E-Mail und diesem Passwort.</span>"; ?>

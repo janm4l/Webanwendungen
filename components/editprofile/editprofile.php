@@ -112,10 +112,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     <div id="editprofileFormOuter">
         <h1 id="editprofileHeading">PROFIL BEARBEITEN</h1>
         <div id="editprofileFormInner">
-            <form method="post" enctype="multipart/form-data" id="editprofile_form" onsubmit="return submit_check('Bitte fülle das Formular richtig aus')">
+            <form method="post" enctype="multipart/form-data" id="editprofile_form" onsubmit="return profile_submit_check('Bitte fülle das Formular richtig aus')">
                 <img src="<?php echo getProfilePicturePath(); ?>" alt="Bild nicht geladen" width="200" height="200" style="border-radius: 100px">
                 <?php if (!empty($info['profile_picture'])) echo "<br><a href=\"#\" id=\"deletePictureButton\" class=\"button\" style=\"text-decoration: none; text-align: center\">Profilbild löschen</a>" ?>
-                  <span id="editprofile_form_error"></span>
                 <br>
                 <input type="file" id="profilepicture" name="profilepicture">
                 <br>
@@ -156,7 +155,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <?php if (!empty($street_number_msg)) echo "<span class=\"errormessage\">$street_number_msg</span><br>"; //Hausnummer-Fehler ?>
                 Postleitzahl
                 <br>
-                <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" onblur="postcode_check(event, '^[0-9]{5}$', 'postcode', 'Bitte gib eine valide Postleitzahl ein');" class="inputfield">
+                <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" onblur="postcode_check(event, '^[0-9]{4}$', 'postcode', 'Bitte gib eine valide Postleitzahl ein');" class="inputfield">
                 <span id="error_postcode"></span>
                 <br>
                 <?php if (isset($postcode_validated) && !$postcode_validated) echo "<span class=\"errormessage\">$postcode_msg</span><br>"; //Postleitzahl-Fehler ?>
@@ -169,6 +168,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <br>
                 <input type="text" id="create_datetime" name="create_datetime" placeholder="account erstellt am: 01.01.2000" value="<?php echo $info['create_datetime'] ?>" readonly class="inputfield">
                 <br>
+                <span id="editprofile_form_error"></span>
                 <input type="submit" value="Speichern" formaction="/components/editprofile/editprofile.php" class="button">
             </form>
             <form>

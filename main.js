@@ -69,7 +69,7 @@ function errorRegEx(event, regEx, id, message) {
 }
 
 
-function submit_check(message){
+function profile_submit_check(message){
     let error = document.getElementById("editprofile_form_error");
     if(email_valid === true && street_number_valid === true && postcode_valid === true && username_valid === true){
         error.textContent = "";
@@ -134,6 +134,7 @@ function register_submit_check(message){
 
 function change_password_submit_check(message){
     let error = document.getElementById("change_passwords_form_error");
+    console.log("password valid" + password_valid + "check password valid" + check_password_valid + "passwords fit" +passwords_fit)
     if(password_valid === true && check_password_valid === true && passwords_fit === true){
         error.textContent = "";
         return true;

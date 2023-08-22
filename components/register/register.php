@@ -89,11 +89,11 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <span id="password_compare_error"></span>
                 <br>
                 <span id="error_confirm_password"></span>
-
+                <br>
+                <span id="register_form_error"></span>
                 <br>
                 <input type="submit" formaction="/components/register/register.php" value="Registrieren" class="button">
                 <br>
-                              <span id="register_form_error"></span>
             </form>
 
         </div>

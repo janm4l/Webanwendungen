@@ -15,7 +15,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 //Altes Passwort
 $old_password_final = '';
 $old_password_validated = (password_verify(trim($data['old_password']), $info['password_hashed']) ? true : false);
-$old_password_msg = ($old_password_validated ? '' : 'Dieses Passwort stimmt nicht mit deinem akutellen Passwort überein.');
+$old_password_msg = ($old_password_validated ? '' : 'Dieses Passwort stimmt nicht mit deinem aktuellen Passwort überein.');
 
 // Validate password
 $password_final = '';
