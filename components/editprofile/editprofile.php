@@ -29,7 +29,7 @@ $forename = '';
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $newprofilepicturepath = $info['profile_picture'];
-    // if picture uploaded
+    // Wurde ein Bild hochgeladen?
     if(isset($_FILES['profilepicture']) && $_FILES['profilepicture']['size'] != 0){
         $result = storeProfilePicture();
         if($result[0]){
@@ -88,6 +88,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     $forename_msg = validateInputLength(trim($_POST['forename']), 100);
     if($forename_msg == '') $forename_final = trim($_POST['forename']);
 
+    // Nochmal checken, ob alles überprüft wurde und korrekt ist
     if($profile_picture_msg == '' && $email_validated && $username_validated && $postcode_validated && $street_msg == '' && $street_number_msg == '' && $city_msg == '' && $name_msg == '' && $forename_msg == ''){
         $result = updateInfo($username_final, $email_final, $street_final, $street_number_final, $postcode_final, $city_final, $newprofilepicturepath, $name_final, $forename_final);
         if($result){
@@ -155,7 +156,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
                 <?php if (!empty($street_number_msg)) echo "<span class=\"errormessage\">$street_number_msg</span><br>"; //Hausnummer-Fehler ?>
                 Postleitzahl
                 <br>
-                <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" onblur="postcode_check(event, '^[0-9]{4}$', 'postcode', 'Bitte gib eine valide Postleitzahl ein');" class="inputfield">
+                <input type="text" id="postcode" name="postcode" placeholder="44444" value="<?php echo $info['postcode'] ?>" onkeydown="limitKeypress(event, this.value, 5)" onblur="postcode_check(event, '^[0-9]{4,5}$', 'postcode', 'Bitte gib eine valide Postleitzahl ein');" class="inputfield">
                 <span id="error_postcode"></span>
                 <br>
                 <?php if (isset($postcode_validated) && !$postcode_validated) echo "<span class=\"errormessage\">$postcode_msg</span><br>"; //Postleitzahl-Fehler ?>

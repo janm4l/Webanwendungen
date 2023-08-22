@@ -25,23 +25,23 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     $username_final = '';
     $username_validated = validateUsername(trim($_POST['username']));
 
-    // Validate password
+    // Passwort überprüfen
     $password_final = '';
     $password_validated = validatePassword(trim($_POST['password']));
     
-    // Validate confirm password
+    // Bestätigung des Passworts überprüfen
     $confirm_password_validated = validateConfirmPassword(trim($_POST['confirm_password']));
     
-    // Check input errors before inserting in database
+    // Nochmal checken, ob alles überprüft wurde und korrekt ist
     if($email_validated && $username_validated && $password_validated && $confirm_password_validated){
         $registered = registerAndLoginUser($email_final, $username_final, $password_final);
         if($registered){
-            // Redirect to login page
+            // Wenn Registrierung erfolgreich war, auf das Profil weiterleiten
             header("location: /components/profile/profile.php");
         }
     }
     
-    // Close connection
+    // MySQL-Verbindung beenden
     mysqli_close($conn);
 }
 

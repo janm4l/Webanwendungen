@@ -20,6 +20,6 @@ if($data['delete']){
 $response = array('success' => $success);
 echo json_encode($response);
 
-// Close connection
+// MySQL-Verbindung beenden
 mysqli_close($conn);
 ?>

@@ -16,24 +16,24 @@ $result = false;
 // Die folgenden Schritte werden nur ausgeführt, wenn ein Formular abgesendet wurde (also nicht bei erstmaligem Aufruf der Seite)
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    //Altes Passwort
+    //Altes Passwort überprüfen
     $old_password_final = '';
     $old_password_validated = (password_verify(trim($_POST['old_password']), $info['password_hashed']) ? true : false);
     $old_password_msg = ($old_password_validated ? '' : 'Dieses Passwort stimmt nicht mit deinem akutellen Password &uuml;berein.');
 
-    // Validate password
+    // Passwort überprüfen
     $password_final = '';
     $password_validated = validatePassword(trim($_POST['password']));
     
-    // Validate confirm password
+    // Bestätigung des Passworts überprüfen
     $confirm_password_validated = validateConfirmPassword(trim($_POST['confirm_password']));
     
-    // Check input errors before inserting in database
+    // Nochmal checken, ob alles überprüft wurde und korrekt ist
     if($old_password_validated && $password_validated && $confirm_password_validated){
         $result = updateUserPassword($password_final);
     }
     
-    // Close connection
+    // MySQL-Verbindung beenden
     mysqli_close($conn);
 }
 

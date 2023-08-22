@@ -10,11 +10,10 @@
     function logout(){
         if(isLoggedIn()){
             // Aus dem PHP User-Manual:
-            // Unset all of the session variables.
+            // Alle Variablen der Session löschen
             $_SESSION = array();
 
-            // If it's desired to kill the session, also delete the session cookie.
-            // Note: This will destroy the session, and not just the session data!
+            // Session-Cookie clientseitig löschen
             if (ini_get("session.use_cookies")) {
                 $params = session_get_cookie_params();
                 setcookie(session_name(), '', time() - 42000,
@@ -23,7 +22,7 @@
                 );
             }
 
-            // Finally, destroy the session.
+            // Session serverseitig zerstören
             session_destroy();
         } 
     }
@@ -38,20 +37,20 @@
 
     function registerAndLoginUser($email, $username, $password){
         
-        // Prepare an insert statement
+        // Statement schreiben
         $sql = "INSERT INTO users (email, username, password_hashed) VALUES (?, ?, ?)";
          
         global $conn;
         if($stmt = mysqli_prepare($conn, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Variablen an Parameter des Statements binden
             mysqli_stmt_bind_param($stmt, "sss", $param_email, $param_username, $param_password);
             
-            // Set parameters
+            // Parameter festlegen
             $param_email = $email;
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
-            // Attempt to execute the prepared statement
+            // Statement ausführen
             if(mysqli_stmt_execute($stmt)){
                 $userid = mysqli_insert_id($conn);
                 login($userid);
@@ -61,26 +60,26 @@
                 return false;
             }
 
-            // Close statement
+            // Statement beenden
             mysqli_stmt_close($stmt);
         }
     }
 
     function updateUserPassword($new_password){
         if(isLoggedIn()){
-            // Prepare an insert statement
+            // Statement schreiben
             $sql = "UPDATE users SET password_hashed = ? WHERE id = ?";
             global $conn;
                     
             if($stmt = mysqli_prepare($conn, $sql)){
-                // Set parameters
+                // Variablen an Parameter des Statements binden
                 $param_password = password_hash($new_password, PASSWORD_DEFAULT); // Creates a password hash
                 $param_userid = getUserId();
 
-                // Bind variables to the prepared statement as parameters
+                // Variablen an Parameter des Statements binden
                 mysqli_stmt_bind_param($stmt, "ss", $param_password, $param_userid);
                         
-                // Attempt to execute the prepared statement
+                // Statement ausführen
                 if(mysqli_stmt_execute($stmt)){
                     return true;
                 } else {
@@ -88,7 +87,7 @@
                     return false;
                 }
 
-                // Close statement
+                // Statement beenden
                 mysqli_stmt_close($stmt);
             }
         }else{
@@ -104,17 +103,17 @@
         if(isLoggedIn()){
             $info = getUserInfo();
             $filename = $info['profile_picture'];
-            // Prepare a select statement
+            // Statement schreiben
             $sql = "UPDATE users SET profile_picture = '' WHERE id = ?";
             global $conn;
 
             if($stmt = mysqli_prepare($conn, $sql)){
                 $param_id = getUserId();
-                // Bind variables to the prepared statement as parameters
+                // Variablen an Parameter des Statements binden
                 mysqli_stmt_bind_param($stmt, "s", $param_id);
 
                     
-                // Attempt to execute the prepared statement
+                // Statement ausführen
                 if(mysqli_stmt_execute($stmt)){
                     deletePicture($filename);
                     return true;
@@ -122,7 +121,7 @@
                     echo "Es ist ein Fehler aufgetreten.";
                     return false;
                 }
-                // Close statement
+                // Statement beenden
                 mysqli_stmt_close($stmt);
                 
             }
@@ -133,7 +132,7 @@
 
     function updateInfo($username, $email, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename){
         if(isLoggedIn()){
-            // Prepare a select statement
+            // Statement schreiben
             $sql = "UPDATE users SET username = ?, email = ?, street = ?, street_number = ?, postcode = ?, city = ?, profile_picture = ?, name = ?, forename = ? WHERE id = ?";
             global $conn;
 
@@ -149,18 +148,18 @@
                 $param_name = (empty($name) ? null : $name);
                 $param_forename = (empty($forename) ? null : $forename);
 
-                // Bind variables to the prepared statement as parameters
+                // Variablen an Parameter des Statements binden
                 mysqli_stmt_bind_param($stmt, "ssssssssss", $param_username, $param_email, $param_street, $param_street_number, $param_postcode, $param_city, $param_profile_picture, $param_name, $param_forename, $param_id);
 
                     
-                // Attempt to execute the prepared statement
+                // Statement ausführen
                 if(mysqli_stmt_execute($stmt)){
                     return true;
                 } else {
                     echo "Es ist ein Fehler aufgetreten.";
                     return false;
                 }
-                // Close statement
+                // Statement beenden
                 mysqli_stmt_close($stmt);
                 
             }
@@ -189,27 +188,28 @@
     */
     function getUserInfo(){
         if(isLoggedIn()){
-            // Prepare a select statement
+            // Statement schreiben
             $sql = "SELECT username, email, password_hashed, create_datetime, street, street_number, postcode, city, profile_picture, name, forename FROM users WHERE id = ?";
             global $conn;
 
                 
             if($stmt = mysqli_prepare($conn, $sql)){
                 $param_id = getUserId();
-                // Bind variables to the prepared statement as parameters
+                // Variablen an Parameter des Statements binden
                 mysqli_stmt_bind_param($stmt, "s", $param_id);
 
                     
-                // Attempt to execute the prepared statement
+                // Statement ausführen
                 if(mysqli_stmt_execute($stmt)){
-                    /* store result */
+                    // Result abspeichern
                     mysqli_stmt_store_result($stmt);
 
-                    /* bind result variables */
+                    //Result in Variablen speichern
                     mysqli_stmt_bind_result($stmt, $username, $email, $password_hashed, $create_datetime, $street, $street_number, $postcode, $city, $profile_picture, $name, $forename);
                         
                     if(mysqli_stmt_num_rows($stmt) < 1){
                         echo "Keine Userinfo";
+                        logout(); //Nutzerinfo kann nicht geladen werden (z.B. Account gelöscht) -> Nutzer ausloggen
                         return null;
                     } else {
                         $info = array();
@@ -233,7 +233,7 @@
                     echo "Es ist ein Fehler aufgetreten.";
                     return null;
                 }
-                // Close statement
+                // Statement beenden
                 mysqli_stmt_close($stmt);
                 
             }

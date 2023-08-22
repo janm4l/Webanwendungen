@@ -6,12 +6,14 @@ include '../../utils/user.php';
 $email_msg = '';
 $username_msg = '';
 
+$info = getUserInfo();
+
 if(!isLoggedIn()){
     header("location: /components/login/login.php");
     die();
 }
 
-$info = getUserInfo();
+
 
 
 ?>

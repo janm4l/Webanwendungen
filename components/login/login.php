@@ -14,7 +14,7 @@ $password = '';
 
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
-    //Checken, ob Passwort und Usrename gesetzt sind
+    //Checken, ob Passwort und Username gesetzt sind
     if(isset($_POST['username'])){
         $username = trim($_POST['username']);
     }
@@ -24,22 +24,22 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     
     if(!empty($username) && !empty($password)){
-        // Prepare a select statement
+        // Statement schreiben
         $sql = "SELECT id, password_hashed FROM users WHERE UPPER(username) = UPPER(?)";
         global $conn;
 
             
         if($stmt = mysqli_prepare($conn, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Variablen an Parameter des Statements binden
             mysqli_stmt_bind_param($stmt, "s", $username);
 
                 
-            // Attempt to execute the prepared statement
+            // Statement ausführen
             if(mysqli_stmt_execute($stmt)){
-                /* store result */
+                // Result abspeichern
                 mysqli_stmt_store_result($stmt);
 
-                /* bind result variables */
+                //Result in Variablen speichern
                 mysqli_stmt_bind_result($stmt, $userid, $password_db);
                     
                 if(mysqli_stmt_num_rows($stmt) < 1){
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             } else {
                 echo "Es ist ein fehler aufgetreten.";
             }
-            // Close statement
+            //Statement beenden
             mysqli_stmt_close($stmt);
             
         }
