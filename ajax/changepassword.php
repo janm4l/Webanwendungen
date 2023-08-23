@@ -25,7 +25,8 @@ $password_validated = validatePassword(trim($data['password']));
 $confirm_password_validated = validateConfirmPassword(trim($data['confirm_password']));
 
 $result = false;
-// Nochmal checken, ob alles überprüft wurde und korrekt ist$confirm_password_validated){
+// Nochmal checken, ob alles überprüft wurde und korrekt ist
+if($confirm_password_validated){
     $result = updateUserPassword($password_final);
 }
 $response = array('success' => $result, 'old_password_msg' => $old_password_msg, 'password_msg' => $password_msg, 'confirm_password_msg' => $confirm_password_msg);
